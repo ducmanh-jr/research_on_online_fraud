@@ -1,340 +1,11 @@
 [
   {
-    "session_id": "fb_1782107639041_5ff57c",
-    "page_type": "facebook",
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "screen_avail": "412x915",
-      "pixel_ratio": 3.5,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": -420,
-      "connection": {
-        "type": "4g",
-        "downlink": "9.2 Mbps",
-        "rtt": "unknown",
-        "save_data": false
-      },
-      "local_time": "12:53:59 22/6/2026",
-      "timestamp": "2026-06-22T05:53:59.576Z"
-    },
-    "location": {
-      "error": "Hết thời gian chờ"
-    },
-    "battery": {
-      "level": "29%",
-      "charging": "Không sạc",
-      "charging_time": "N/A",
-      "discharging_time": "0s"
-    },
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T05:54:06.687Z"
-  },
-  {
-    "session_id": "fb_1782107855438_b6sszh",
-    "page_type": "facebook",
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "screen_avail": "412x915",
-      "pixel_ratio": 3.5,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": -420,
-      "connection": {
-        "type": "4g",
-        "downlink": "9.9 Mbps",
-        "rtt": "unknown",
-        "save_data": false
-      },
-      "local_time": "12:57:35 22/6/2026",
-      "timestamp": "2026-06-22T05:57:35.998Z"
-    },
-    "location": {
-      "error": "Không lấy được vị trí"
-    },
-    "battery": {
-      "level": "28%",
-      "charging": "Không sạc",
-      "charging_time": "N/A",
-      "discharging_time": "0s"
-    },
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T05:58:08.282Z"
-  },
-  {
-    "session_id": "fb_1782107991943_reo1ht",
-    "page_type": "facebook",
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "screen_avail": "412x915",
-      "pixel_ratio": 3.5,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": -420,
-      "connection": {
-        "type": "4g",
-        "downlink": "9.4 Mbps",
-        "rtt": "unknown",
-        "save_data": false
-      },
-      "local_time": "12:59:52 22/6/2026",
-      "timestamp": "2026-06-22T05:59:52.267Z"
-    },
-    "location": {
-      "error": "Đang lấy vị trí..."
-    },
-    "battery": {
-      "level": "27%",
-      "charging": "Không sạc",
-      "charging_time": "N/A",
-      "discharging_time": "0s"
-    },
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T05:59:49.392Z"
-  },
-  {
-    "session_id": "fb_1782107991943_reo1ht",
-    "page_type": "facebook",
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "screen_avail": "412x915",
-      "pixel_ratio": 3.5,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": -420,
-      "connection": {
-        "type": "4g",
-        "downlink": "9.4 Mbps",
-        "rtt": "unknown",
-        "save_data": false
-      },
-      "local_time": "12:59:52 22/6/2026",
-      "timestamp": "2026-06-22T05:59:52.267Z"
-    },
-    "location": {
-      "error": "Không lấy được vị trí"
-    },
-    "battery": {
-      "level": "27%",
-      "charging": "Không sạc",
-      "charging_time": "N/A",
-      "discharging_time": "0s"
-    },
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T05:59:56.223Z"
-  },
-  {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 3.5,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "13:12:11 22/6/2026",
-      "timestamp": "2026-06-22T06:12:11.089Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://anti-tennessee-cho-message.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "24%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:12:08.434Z"
-  },
-  {
     "session_id": "fb_1782108730729_qnvsfc",
     "page_type": "facebook",
     "update_type": "dwell_time",
     "dwell_time": "30s",
     "server_ip": "42.113.16.187",
     "received_at": "2026-06-22T06:12:37.856Z"
-  },
-  {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 3.5,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "13:12:11 22/6/2026",
-      "timestamp": "2026-06-22T06:12:11.089Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://anti-tennessee-cho-message.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "24%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Không lấy được vị trí"
-    },
-    "social_logins": {
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 128,
-        "likely_logged_in": true
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 166,
-        "likely_logged_in": true
-      },
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 270,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 353,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "32s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:12:40.354Z"
   },
   {
     "session_id": "fb_1782108730729_qnvsfc",
@@ -367,5 +38,391 @@
     "dwell_time": "110s",
     "server_ip": "42.113.16.187",
     "received_at": "2026-06-22T06:14:38.240Z"
+  },
+  {
+    "session_id": "fb_1782233256692_js3mg5",
+    "page_type": "facebook",
+    "network": {
+      "type": "4g",
+      "downlink": "10 Mbps",
+      "rtt": "N/A",
+      "save_data": false,
+      "online": true
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "browser": "Chrome",
+      "browser_version": "149.0.7827.91",
+      "device_name": "M2102K1G",
+      "device_type": "Điện thoại",
+      "os": "Android",
+      "os_version": "14",
+      "screen_width": 412,
+      "screen_height": 915,
+      "viewport": "411x827",
+      "pixel_ratio": 2.625,
+      "color_depth": 24,
+      "orientation": "portrait-primary",
+      "platform": "Linux aarch64",
+      "vendor": "Google Inc.",
+      "max_touch_points": 5,
+      "hardware_concurrency": 8,
+      "device_memory": "8 GB"
+    },
+    "context": {
+      "local_time": "23:47:37 23/6/2026",
+      "timestamp": "2026-06-23T16:47:37.008Z",
+      "timezone": "Asia/Saigon",
+      "timezone_offset": "GMT+7",
+      "language": "vi-VN",
+      "languages": "vi-VN, en-US",
+      "referrer": "https://ends-protecting-favorites-coupons.trycloudflare.com/landing/delivery.html",
+      "referrer_source": "🔗 ends-protecting-favorites-coupons.trycloudflare.com",
+      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html?campaign=delivery&utm_source=landing",
+      "do_not_track": "unset",
+      "cookies_enabled": true,
+      "js_enabled": true
+    },
+    "battery": {
+      "level": "23%",
+      "charging": "Không sạc"
+    },
+    "location": {
+      "error": "Đang lấy..."
+    },
+    "social_logins": {},
+    "dwell_time": "0s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:47:36.247Z"
+  },
+  {
+    "session_id": "fb_1782233256692_js3mg5",
+    "page_type": "facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "30s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:48:05.926Z"
+  },
+  {
+    "session_id": "fb_1782233256692_js3mg5",
+    "page_type": "facebook",
+    "network": {
+      "type": "4g",
+      "downlink": "10 Mbps",
+      "rtt": "N/A",
+      "save_data": false,
+      "online": true
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "browser": "Chrome",
+      "browser_version": "149.0.7827.91",
+      "device_name": "M2102K1G",
+      "device_type": "Điện thoại",
+      "os": "Android",
+      "os_version": "14",
+      "screen_width": 412,
+      "screen_height": 915,
+      "viewport": "411x827",
+      "pixel_ratio": 2.625,
+      "color_depth": 24,
+      "orientation": "portrait-primary",
+      "platform": "Linux aarch64",
+      "vendor": "Google Inc.",
+      "max_touch_points": 5,
+      "hardware_concurrency": 8,
+      "device_memory": "8 GB"
+    },
+    "context": {
+      "local_time": "23:47:37 23/6/2026",
+      "timestamp": "2026-06-23T16:47:37.008Z",
+      "timezone": "Asia/Saigon",
+      "timezone_offset": "GMT+7",
+      "language": "vi-VN",
+      "languages": "vi-VN, en-US",
+      "referrer": "https://ends-protecting-favorites-coupons.trycloudflare.com/landing/delivery.html",
+      "referrer_source": "🔗 ends-protecting-favorites-coupons.trycloudflare.com",
+      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html?campaign=delivery&utm_source=landing",
+      "do_not_track": "unset",
+      "cookies_enabled": true,
+      "js_enabled": true
+    },
+    "battery": {
+      "level": "23%",
+      "charging": "Không sạc"
+    },
+    "location": {
+      "error": "Không lấy được vị trí"
+    },
+    "social_logins": {
+      "TikTok": {
+        "reachable": true,
+        "load_time_ms": 204,
+        "likely_logged_in": false
+      },
+      "Google/Gmail": {
+        "reachable": false,
+        "likely_logged_in": false
+      },
+      "YouTube": {
+        "reachable": true,
+        "load_time_ms": 205,
+        "likely_logged_in": false
+      },
+      "Facebook": {
+        "reachable": true,
+        "load_time_ms": 387,
+        "likely_logged_in": false
+      },
+      "Instagram": {
+        "reachable": false,
+        "likely_logged_in": false
+      },
+      "Twitter/X": {
+        "reachable": true,
+        "load_time_ms": 448,
+        "likely_logged_in": false
+      }
+    },
+    "dwell_time": "45s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:48:22.756Z"
+  },
+  {
+    "session_id": "fb_1782233256692_js3mg5",
+    "page_type": "facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "60s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:48:35.915Z"
+  },
+  {
+    "session_id": "fb_1782233326902_75lb0v",
+    "page_type": "facebook",
+    "network": {
+      "type": "4g",
+      "downlink": "10 Mbps",
+      "rtt": "50 ms",
+      "save_data": false,
+      "online": true
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "browser": "Chrome",
+      "browser_version": "149.0.0.0",
+      "device_name": "Windows PC",
+      "device_type": "Máy tính",
+      "os": "Windows",
+      "os_version": "10/11",
+      "screen_width": 1536,
+      "screen_height": 960,
+      "viewport": "1536x825",
+      "pixel_ratio": 2,
+      "color_depth": 32,
+      "orientation": "landscape-primary",
+      "platform": "Win32",
+      "vendor": "Google Inc.",
+      "max_touch_points": 0,
+      "hardware_concurrency": 16,
+      "device_memory": "32 GB"
+    },
+    "context": {
+      "local_time": "23:48:47 23/6/2026",
+      "timestamp": "2026-06-23T16:48:47.226Z",
+      "timezone": "Asia/Saigon",
+      "timezone_offset": "GMT+7",
+      "language": "vi-VN",
+      "languages": "vi-VN, vi, fr-FR, fr, en-US, en",
+      "referrer": "Trực tiếp (không có referrer)",
+      "referrer_source": "Trực tiếp / Copy link",
+      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html",
+      "do_not_track": "unset",
+      "cookies_enabled": true,
+      "js_enabled": true
+    },
+    "battery": {
+      "level": "70%",
+      "charging": "Đang sạc"
+    },
+    "location": {
+      "error": "Đang lấy..."
+    },
+    "social_logins": {},
+    "dwell_time": "0s",
+    "server_ip": "42.113.16.187",
+    "received_at": "2026-06-23T16:48:47.280Z"
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "network": {
+      "type": "4g",
+      "downlink": "10 Mbps",
+      "rtt": "N/A",
+      "save_data": false,
+      "online": true
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "browser": "Chrome",
+      "browser_version": "149.0.7827.91",
+      "device_name": "M2102K1G",
+      "device_type": "Điện thoại",
+      "os": "Android",
+      "os_version": "14",
+      "screen_width": 412,
+      "screen_height": 915,
+      "viewport": "411x827",
+      "pixel_ratio": 2.625,
+      "color_depth": 24,
+      "orientation": "portrait-primary",
+      "platform": "Linux aarch64",
+      "vendor": "Google Inc.",
+      "max_touch_points": 5,
+      "hardware_concurrency": 8,
+      "device_memory": "8 GB"
+    },
+    "context": {
+      "local_time": "23:48:56 23/6/2026",
+      "timestamp": "2026-06-23T16:48:56.739Z",
+      "timezone": "Asia/Saigon",
+      "timezone_offset": "GMT+7",
+      "language": "vi-VN",
+      "languages": "vi-VN, en-US",
+      "referrer": "http://m.facebook.com/",
+      "referrer_source": "📘 Facebook / Messenger",
+      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html",
+      "do_not_track": "unset",
+      "cookies_enabled": true,
+      "js_enabled": true
+    },
+    "battery": {
+      "level": "22%",
+      "charging": "Không sạc"
+    },
+    "location": {
+      "error": "Đang lấy..."
+    },
+    "social_logins": {},
+    "dwell_time": "0s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:48:55.998Z"
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "network": {
+      "type": "4g",
+      "downlink": "10 Mbps",
+      "rtt": "N/A",
+      "save_data": false,
+      "online": true
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "browser": "Chrome",
+      "browser_version": "149.0.7827.91",
+      "device_name": "M2102K1G",
+      "device_type": "Điện thoại",
+      "os": "Android",
+      "os_version": "14",
+      "screen_width": 412,
+      "screen_height": 915,
+      "viewport": "411x827",
+      "pixel_ratio": 2.625,
+      "color_depth": 24,
+      "orientation": "portrait-primary",
+      "platform": "Linux aarch64",
+      "vendor": "Google Inc.",
+      "max_touch_points": 5,
+      "hardware_concurrency": 8,
+      "device_memory": "8 GB"
+    },
+    "context": {
+      "local_time": "23:48:56 23/6/2026",
+      "timestamp": "2026-06-23T16:48:56.739Z",
+      "timezone": "Asia/Saigon",
+      "timezone_offset": "GMT+7",
+      "language": "vi-VN",
+      "languages": "vi-VN, en-US",
+      "referrer": "http://m.facebook.com/",
+      "referrer_source": "📘 Facebook / Messenger",
+      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html",
+      "do_not_track": "unset",
+      "cookies_enabled": true,
+      "js_enabled": true
+    },
+    "battery": {
+      "level": "22%",
+      "charging": "Không sạc"
+    },
+    "location": {
+      "error": "Không lấy được vị trí"
+    },
+    "social_logins": {
+      "TikTok": {
+        "reachable": true,
+        "load_time_ms": 46,
+        "likely_logged_in": true
+      },
+      "Google/Gmail": {
+        "reachable": false,
+        "likely_logged_in": false
+      },
+      "Twitter/X": {
+        "reachable": true,
+        "load_time_ms": 97,
+        "likely_logged_in": true
+      },
+      "YouTube": {
+        "reachable": true,
+        "load_time_ms": 105,
+        "likely_logged_in": true
+      },
+      "Facebook": {
+        "reachable": true,
+        "load_time_ms": 353,
+        "likely_logged_in": false
+      },
+      "Instagram": {
+        "reachable": false,
+        "likely_logged_in": false
+      }
+    },
+    "dwell_time": "0s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:48:56.490Z"
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "30s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:49:26.052Z"
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "60s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:49:55.644Z"
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "90s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:50:25.622Z"
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "120s",
+    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "received_at": "2026-06-23T16:50:55.641Z"
   }
 ]

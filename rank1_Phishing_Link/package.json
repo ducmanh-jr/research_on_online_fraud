@@ -8,9 +8,14 @@
     "dev": "node server.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "ws": "^8.21.0"
   },
-  "keywords": ["research", "phishing", "security"],
+  "keywords": [
+    "research",
+    "phishing",
+    "security"
+  ],
   "author": "ducmanhjr",
   "license": "MIT"
 }
