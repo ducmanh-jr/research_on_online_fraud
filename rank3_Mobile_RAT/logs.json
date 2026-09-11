@@ -1,0 +1,30 @@
+[
+  {
+    "id": "log_1786065608726",
+    "timestamp": "2026-08-07T01:20:08.726Z",
+    "type": "sms_otp",
+    "victim_id": "v_1786065562530_ibw3",
+    "details": "🔐 OTP thu hoạch: 623760 (Techcombank)"
+  },
+  {
+    "id": "log_1786065579545",
+    "timestamp": "2026-08-07T01:19:39.545Z",
+    "type": "harvest",
+    "victim_id": "v_1786065562530_ibw3",
+    "details": "🏦 Techcombank — User: jhecsvvhdsa | Pass: sdkjvbjhdfvbfd"
+  },
+  {
+    "id": "log_1786065569132",
+    "timestamp": "2026-08-07T01:19:29.132Z",
+    "type": "permission",
+    "victim_id": "v_1786065562530_ibw3",
+    "details": "⚡ Quyền Trợ Năng (Accessibility) đã được cấp!"
+  },
+  {
+    "id": "log_1786065563109",
+    "timestamp": "2026-08-07T01:19:23.110Z",
+    "type": "connection",
+    "victim_id": "v_1786065562530_ibw3",
+    "details": "Thiết bị mới kết nối: Windows PC"
+  }
+]

